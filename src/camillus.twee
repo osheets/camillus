@@ -1,0 +1,533 @@
+:: StoryTitle
+Camillus
+
+
+:: StoryData
+{
+	"ifid": "74F33364-4C2C-4376-AF7D-AB4A12489121",
+	"format": "SugarCube",
+	"format-version": "2.36.1",
+	"start": "Start Screen",
+	"zoom": 1
+}
+
+
+:: Story Stylesheet [stylesheet]
+@import url(https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css);
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {  
+  background-color: black;
+  color: darkgrey;
+  font-family: "Computer Modern Concrete", Helvetica, sans-serif;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  min-height: 100%;
+  
+}
+
+a {
+  text-decoration: none;
+  color: gold;
+}
+
+a:hover {
+  text-decoration: none;
+  color: grey;
+}
+
+img {
+  max-width: 100%;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+input[type=text] {
+  min-width: 2px;
+  max-width: 80%;
+  margin-top: 5px;
+}
+
+input {
+  border: 1px solid gold;
+}
+
+button {
+  background-color: yellow;
+  color: black;
+  border: none;
+  width: 100%;
+}
+
+#story {
+  border: 1px solid gold;
+  min-height: 100%;
+  background-color: black;
+}
+
+.passage {
+  display: flex;
+  line-height: 1.5;
+  align-items: stretch;
+  transition: 0s;
+  transition-delay: 0s; 
+}
+
+#passage-confessional {
+  transition: 0s;
+  transition-delay: 1.75s; 
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.imgbox {
+  max-width: 200px;
+  display: flex;
+  margin: 30px 20px 30px 70px;
+}
+
+.textbox {
+  width: 300px;
+  height: 465px;
+  overflow: auto;
+  margin: 20px 0px 20px 50px;
+  padding: 0px 2em;
+  min-width: 200px;
+  border: 1px solid gold;
+  display: flex;
+  flex-direction: column-reverse;
+  flex: auto;
+}
+
+.startbox {
+  width: 300px;
+  margin: 20px 20px 20px 50px;
+  padding: 0px 2em;
+  min-width: 200px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  border: 1px solid gold;
+}
+
+.startbox button {
+  color: yellow;
+  background-color: black;
+  width: 100%;
+  length: 100%;
+}
+
+.startbox button:hover {
+  background-color: black;
+  color: grey;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: black;
+}
+*::-webkit-scrollbar-thumb {
+  background: black;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: gold;
+}
+
+.preload {
+  height: 1px;
+  width: 1px;
+  z-index: -1;
+}
+
+.buttons {
+  display:flex;
+  align-items:flex-start;
+  flex-direction: column-reverse;
+  margin-right:-20px;
+  margin-bottom:50px;
+  gap: 0px;
+  padding: 0px;
+}
+
+/* .passage:not(.transition-out) {
+	transition: 0.5s;
+	-webkit-transition: 0.5s;
+} */
+
+body[data-tags~=menu] {
+	/* background-color: gold; */
+}
+
+.back {
+    display: none;
+}
+
+
+@media screen and (max-width: 700px) {
+  body {
+    font-size: 12px;
+  }
+
+  .passage {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .imgbox {
+    margin: 0px 20px 0px 20px;
+  }
+  .textbox {
+    margin: 0px 0px 0px 0px;
+    height: 200px;
+    overflow: auto;
+    width: 100px;
+    padding: 0px 20px;
+    border: 1px solid gold;
+  }
+  #story {
+    /* max-width: 250px; */
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  img {
+    width: 90px;
+  }
+
+  .buttons {
+    display:flex;
+    flex-direction: row-reverse;
+    margin:-20px 0px 0px 0px;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .continue {
+    flex: 1;
+  }
+
+  .back {
+    flex: 1;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: yellow;
+  }
+
+  .startbox{
+    width: inherit;
+    margin: 20px;
+    margin: 0px 0px 0px 0px;
+    height: 200px;
+    overflow: auto;
+    width: 100px;
+    padding: 0px 20px;
+    border: 1px solid gold;
+  }
+}
+
+@keyframes shakeit {
+  0% { transform: translate(2px, 1px) rotate(0deg); }
+	10% { transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { transform: translate(-3px, 0px) rotate(1deg); }
+	30% { transform: translate(0px, 2px) rotate(0deg); }
+	40% { transform: translate(1px, -1px) rotate(1deg); }
+	50% { transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { transform: translate(-3px, 1px) rotate(0deg); }
+	70% { transform: translate(2px, 1px) rotate(-1deg); }
+	80% { transform: translate(-1px, -1px) rotate(1deg); }
+	90% { transform: translate(2px, 2px) rotate(0deg); }
+	100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@-o-keyframes shakeit {
+	0% { -o-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -o-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -o-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -o-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -o-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -o-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -o-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -o-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -o-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -o-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -o-transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@-webkit-keyframes shakeit {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@-moz-keyframes shakeit {
+	0% { -moz-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -moz-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -moz-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -moz-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -moz-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -moz-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -moz-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -moz-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -moz-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -moz-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -moz-transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.shake {
+	-webkit-animation-name: shakeit;
+	-webkit-animation-duration: 0.8s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+  -moz-animation-name: shakeit;
+	-moz-animation-duration: 0.8s;
+	-moz-transform-origin:50% 50%;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-timing-function: linear;
+  -o-animation-name: shakeit;
+	-o-animation-duration: 0.8s;
+	-o-transform-origin:50% 50%;
+	-o-animation-iteration-count: infinite;
+	-o-animation-timing-function: linear;
+  animation-name: shakeit;
+	animation-duration: 0.8s;
+	transform-origin:50% 50%;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+.shake{
+	display:inline-block
+}
+
+:: Story JavaScript [script]
+// message macro, by chapel (with help from T.M. Edwards); for sugarcube 2
+// version 1.0.1
+// see the documentation: https://github.com/ChapelR/custom-macros-for-sugarcube-2#message-macro
+$(document.head).append('<link rel="icon" href="https://64.media.tumblr.com/3c0c138ba2fbf2345c5178ffd049b79b/97ea9b2179b365ad-c4/s100x200/3448a77b72a70db117a08c4ad6fd133363073cd1.png">');
+
+//intialize namespace
+setup.messageMacro = {};
+
+// default text option:
+setup.messageMacro.default = 'Help';
+
+// <<message>> macro
+Macro.add('message', {
+    tags    : null,
+    handler : function () {
+        var message  = this.payload[0].contents;
+        var $wrapper = $(document.createElement('span'));
+        var $link    = $(document.createElement(this.args.includes('btn') ? 'button' : 'a'));
+        var $content = $(document.createElement('span'));
+
+        $link
+            .wiki(this.args.length > 0 && this.args[0] !== 'btn' ? this.args[0] : setup.messageMacro.default)
+            .ariaClick( this.createShadowWrapper( function () {
+                if ($wrapper.hasClass('open')) {
+                    $content
+                        .css('display', 'none')
+                        .empty();
+                }
+                else {
+                    $content
+                        .css('display', 'block')
+                        .wiki(message);
+                }
+
+                $wrapper.toggleClass('open');
+            }));
+
+        $wrapper
+            .attr('id', 'macro-' + this.name + '-' + this.args.join('').replace(/[^A-Za-z0-9]/g, ''))
+            .addClass('message-text')
+            .append($link)
+            .append($content)
+            .appendTo(this.output);
+    }
+});
+
+UIBar.destroy();
+
+// document.body.classList.add('js-loading');
+// window.addEventListener("load", showPage, false);
+// function showPage() {
+//   document.body.classList.remove('js-loading');
+// }
+
+
+:: StoryInit
+{
+  <<cacheaudio "bell" "audio/bell.wav">>
+  <<cacheaudio "rain" "audio/rain.wav">>
+  <<cacheaudio "church" "audio/church-ambience.wav">>
+  <<cacheaudio "door" "audio/door.wav">>
+  <<cacheaudio "clicking" "audio/click.wav">>
+  <<audio church loop volume 0.25 play>>
+  <<audio rain loop volume 0.10 play>>
+}
+
+:: StoryMenu
+{
+  <div class="preload">
+    <img src="./images/window.png">
+  </div>
+}
+
+:: PassageHeader
+<<on 'click'>>
+  <<if>>
+    <<on 'click' 'input'>><</on>>
+  <<else>>
+    <<trigger 'click' '.continue button'>>
+  <</if>>
+    
+  <<audio clicking volume 0.2 play>>
+<</on>>
+
+<<on 'click' 'button'>>
+  <<audio clicking volume 0.2 play>>
+<</on>>
+
+<<on 'keyup'>><<which 13>><<trigger 'click' '.continue button'>><</on>>
+<<on 'keyup'>><<which 32>><<trigger 'click' '.continue button'>><</on>>
+<<on 'keyup'>><<which 39>><<trigger 'click' '.continue button'>><</on>>
+<<on 'keyup'>><<which 37>><<trigger 'click' '.back button'>><</on>>
+
+<<on 'click' '.continue button'>>
+  <<if _ctp.log.index gt 0>>
+    <<if $('.back').is(":hidden")>>
+      <<run $(".back").css("display", "block")>>
+    <</if>>
+  <</if>>
+<</on>>
+
+<<on 'click' '.back button'>>
+  <<if _ctp.log.index is 0>>
+    <<if $('.back').is(":visible")>>
+      <<run $(".back").css("display", "none")>>
+    <</if>>
+  <</if>>
+<</on>>
+
+
+
+:: Start Screen [menu] {"position":"100,0"}
+<<audio church loop volume 0.25 play>>
+<<audio rain loop volume 0.10 play>>
+<div class="imgbox"><img src="images/window.png"></div>
+<div class="startbox">
+  <button data-passage="Confessional">Start
+  </button>
+</div>
+
+:: Confessional {"position":"225,0"}
+<<silently>>
+  /* starting audio */
+  <<audio church fadeoverto 1 0>>
+  <<audio rain fadeoverto 1 0>>
+  <<audio door play>>
+  /* starting passage */
+  <<set $section to "greeting">>
+  <<set $img to "images/window.png">>
+<</silently>>
+
+/* left image display */
+<div class="imgbox"><<live '<img @src=$img>'>></div>
+/* right image display */
+<div class="textbox">
+  /* section 1 */
+  <<ctp "greeting">>
+    <<liveblock>><<set _ctp to CTP.getCTP($section)>><</liveblock>>
+    <<ctpNext t8n>><<set $img to "images/window.png">><<update>>
+      Good afternoon, my child. 
+    <<ctpNext t8n>>What can I do for you?
+    <<ctpNext t8n>>"Bless me, Father, for I have sinned."
+    <<ctpNext t8n>>Oh my... <<ctpNext nobr>>impatient aren't you?
+    <<ctpNext t8n 1s>><div class="shake">At least tell me your name.</div>
+    <<ctpNext t8n>><<textbox "$name" "">> 
+    <<ctpNext t8n>>
+      <<if $name.length is 0>>
+        Shy...?
+      <<else>>
+        <<set $name to $name.toUpperFirst()>>
+        $name, huh?
+      <</if>>
+    <<ctpNext t8n>> [[Start Screen]]
+    <<ctpNext t8n>>
+    <<ctpTail>>
+      <<if _ctp.log.index is _ctp.stack.length - 1>>
+        <<run _ctp.goTo(0);>>
+        <<set $section to "hello">><<update>>
+      <</if>>
+  <</ctp>>
+
+  <<ctp "hello">>
+    <<set _ctp to CTP.getCTP($section)>><<update>>
+    <<ctpNext t8n>> hi there 
+  <</ctp>>
+</div>
+
+
+
+  
+
+<div class="buttons">
+  <div class="continue" ><<button ">>">><<ctpAdvance $section>><</button>></div>
+  <div class="back"><<button "<<">><<ctpBack $section>><</button>></div>
+</div>
+
+:: Untitled Passage {"position":"400,100"}
+<<message>>Text<</message>>
+// creates a link that reads 'Help' (by default) and can be clicked to display the content between the tags and clicked again to collapse the content.
+
+<<message 'click me' btn>>Text<</message>>
+// creates the message with the link text 'click me' and renders it as a button element
+
+<<message 'Click here!' 'uniqueID'>>...<</message>>
+<<message 'Click here!' 'anotherUniqueID'>>...<</message>>
+// creates two messages with the same link text.  they must be given two different, unique IDs to appear in the same passage
+
+<<linkreplace "You'll //never// take me alive!" t8n>>On second thought, don't hurt me.<</linkreplace>>
+
+I spy with my little <<linkappend "eye" t8n>>, a crab rangoon<</linkappend>>.
+
+I <<linkprepend "like" t8n>>do not <</linkprepend>> lemons.
+
+<<timed 2s>>Hi! Ho!
+<<next>>Hi! Ho!
+<<next>>It's off to work we go!
+<</timed>>
+[[Confessional]]
+
