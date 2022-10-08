@@ -370,7 +370,7 @@ how to remove the virtical space around the range input in IE*/
   .passage {
     height: 100vh;
     width: 100vw;
-    margin: 0px;
+    margin: -3vh 0px 0px 0px;
     padding: 0px;
     flex-direction: column;
     align-items: center;
@@ -378,7 +378,19 @@ how to remove the virtical space around the range input in IE*/
   }
   .imgbox {
     margin: 0px 20px 0px 20px;
+    display: flex;
+    width: 25vh;
+    /* min-height: 20vh; */
   }
+
+  .macro-crossfade {
+    flex: 1;
+  }
+  /* img {
+    height: inherit;
+    width: inherit;
+  } */
+
   #textbox {
     overflow: auto;
     margin: 0px 0px 0px 0px;
@@ -396,10 +408,6 @@ how to remove the virtical space around the range input in IE*/
     display: flex;
     justify-content: center;
     align-items: flex-start;
-  }
-
-  img {
-    width: 90px;
   }
 
   .buttons {
@@ -1366,10 +1374,7 @@ UIBar.destroy();
 &lt;div class=&quot;startbox&quot;&gt;
   &lt;button data-passage=&quot;Confessional&quot;&gt;Start
   &lt;/button&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Confessional" tags="" position="225,0" size="100,100">/* left image display */ /* &lt;&lt;live &#39;&lt;img @src=$img&gt;&#39;&gt;&gt; */ /* Alternative way of setting images */
-&lt;div class=&quot;imgbox&quot;&gt; &lt;&lt;crossfadecontainer &quot;windowbox&quot; $img&gt;&gt; &lt;/div&gt;
-&lt;div id=&quot;textbox&quot;&gt; /* right textbox display */
-/* Initial variables */
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Confessional" tags="" position="225,0" size="100,100">/* Initial variables */
 &lt;&lt;silently&gt;&gt;
   /* Starting audio */
   &lt;&lt;audio church fadeoverto 1 0&gt;&gt;
@@ -1380,6 +1385,11 @@ UIBar.destroy();
   &lt;&lt;set $img to &quot;images/window.png&quot;&gt;&gt;
   &lt;&lt;set $input to false&gt;&gt; /* Allows input in textboxes */
 &lt;&lt;/silently&gt;&gt;
+
+/* left image display */ /* &lt;&lt;live &#39;&lt;img @src=$img&gt;&#39;&gt;&gt; */ /* Alternative way of setting images */
+&lt;div class=&quot;imgbox&quot;&gt; &lt;&lt;crossfadecontainer &quot;windowbox&quot; $img&gt;&gt; &lt;/div&gt;
+&lt;div id=&quot;textbox&quot;&gt; /* right textbox display */
+
 
   /* section 1 */
   &lt;&lt;ctp &quot;section1&quot;&gt;&gt;

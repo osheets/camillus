@@ -284,7 +284,7 @@ how to remove the virtical space around the range input in IE*/
   .passage {
     height: 100vh;
     width: 100vw;
-    margin: 0px;
+    margin: -3vh 0px 0px 0px;
     padding: 0px;
     flex-direction: column;
     align-items: center;
@@ -292,7 +292,19 @@ how to remove the virtical space around the range input in IE*/
   }
   .imgbox {
     margin: 0px 20px 0px 20px;
+    display: flex;
+    width: 25vh;
+    /* min-height: 20vh; */
   }
+
+  .macro-crossfade {
+    flex: 1;
+  }
+  /* img {
+    height: inherit;
+    width: inherit;
+  } */
+
   #textbox {
     overflow: auto;
     margin: 0px 0px 0px 0px;
@@ -310,10 +322,6 @@ how to remove the virtical space around the range input in IE*/
     display: flex;
     justify-content: center;
     align-items: flex-start;
-  }
-
-  img {
-    width: 90px;
   }
 
   .buttons {
@@ -700,9 +708,6 @@ UIBar.destroy();
 
 
 :: Confessional {"position":"225,0"}
-/* left image display */ /* <<live '<img @src=$img>'>> */ /* Alternative way of setting images */
-<div class="imgbox"> <<crossfadecontainer "windowbox" $img>> </div>
-<div id="textbox"> /* right textbox display */
 /* Initial variables */
 <<silently>>
   /* Starting audio */
@@ -714,6 +719,11 @@ UIBar.destroy();
   <<set $img to "images/window.png">>
   <<set $input to false>> /* Allows input in textboxes */
 <</silently>>
+
+/* left image display */ /* <<live '<img @src=$img>'>> */ /* Alternative way of setting images */
+<div class="imgbox"> <<crossfadecontainer "windowbox" $img>> </div>
+<div id="textbox"> /* right textbox display */
+
 
   /* section 1 */
   <<ctp "section1">>
