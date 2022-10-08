@@ -100,7 +100,7 @@ button {
   margin: 30px 20px 30px 70px;
 }
 
-.textbox {
+#textbox {
   width: 300px;
   height: 465px;
   overflow: auto;
@@ -164,12 +164,9 @@ button {
   margin-bottom:50px;
   gap: 0px;
   padding: 0px;
+  /* z-index: 1; */
+  /* position: absolute; */
 }
-
-/* .passage:not(.transition-out) {
-	transition: 0.5s;
-	-webkit-transition: 0.5s;
-} */
 
 body[data-tags~=menu] {
 	/* background-color: gold; */
@@ -179,30 +176,132 @@ body[data-tags~=menu] {
     display: none;
 }
 
+/* start volume slider */
+input[type=range]#volume-control {
+  width: 100%;
+  margin: 6.1px 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+input[type=range]#volume-control:focus {
+  outline: none;
+}
+input[type=range]#volume-control::-webkit-slider-runnable-track {
+  background: #ffd700;
+  border: 0;
+  border-radius: 25px;
+  width: 100%;
+  height: 3.8px;
+  cursor: pointer;
+}
+input[type=range]#volume-control::-webkit-slider-thumb {
+  margin-top: -6.1px;
+  width: 16px;
+  height: 16px;
+  background: #ffd700;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 50px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range]#volume-control:focus::-webkit-slider-runnable-track {
+  background: #ffe13d;
+}
+input[type=range]#volume-control::-moz-range-track {
+  background: #ffd700;
+  border: 0;
+  border-radius: 25px;
+  width: 100%;
+  height: 3.8px;
+  cursor: pointer;
+}
+input[type=range]#volume-control::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffd700;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 50px;
+  cursor: pointer;
+}
+input[type=range]#volume-control::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  border-width: 6.1px 0;
+  color: transparent;
+  width: 100%;
+  height: 3.8px;
+  cursor: pointer;
+}
+input[type=range]#volume-control::-ms-fill-lower {
+  background: #c2a300;
+  border: 0;
+  border-radius: 50px;
+}
+input[type=range]#volume-control::-ms-fill-upper {
+  background: #ffd700;
+  border: 0;
+  border-radius: 50px;
+}
+input[type=range]#volume-control::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  background: #ffd700;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 0px;
+  /*Needed to keep the Edge thumb centred*/
+}
+input[type=range]#volume-control:focus::-ms-fill-lower {
+  background: #ffd700;
+}
+input[type=range]#volume-control:focus::-ms-fill-upper {
+  background: #ffe13d;
+}
+/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+how to remove the virtical space around the range input in IE*/
+@supports (-ms-ime-align:auto) {
+  /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+  input[type=range]#volume-control {
+    margin: 0;
+    /*Edge starts the margin from the thumb, not the track as other browsers do*/
+  }
+}
+/* end volume slider */
 
 @media screen and (max-width: 700px) {
   body {
     font-size: 12px;
   }
 
+  #passages {
+    max-width: 100%;
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+  }
   .passage {
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
   }
   .imgbox {
     margin: 0px 20px 0px 20px;
   }
-  .textbox {
-    margin: 0px 0px 0px 0px;
-    height: 200px;
+  #textbox {
     overflow: auto;
+    margin: 0px 0px 0px 0px;
+    min-height: 25vh;
     width: 100px;
     padding: 0px 20px;
     border: 1px solid gold;
   }
   #story {
-    /* max-width: 250px; */
     width: 100vw;
     height: 100vh;
     margin: 0px;
@@ -218,11 +317,13 @@ body[data-tags~=menu] {
   }
 
   .buttons {
+    position: relative;
     display:flex;
     flex-direction: row-reverse;
-    margin:-20px 0px 0px 0px;
+    margin:20px 0px 0px 0px;
     width: 100%;
     gap: 10px;
+    max-width: 250px;
   }
 
   .continue {
@@ -332,6 +433,159 @@ body[data-tags~=menu] {
 }
 
 :: Story JavaScript [script]
+(function () {
+    // disable.js, by chapel, for sugarcube 2
+    // v1.0.0
+
+    'use strict';
+
+    var cls = 'disabled';
+    var interactive = ['button', 'fieldset', 'input', 'menuitem', 'optgroup', 'option', 'select', 'textarea'];
+
+    function getEl (self) {
+        // get the first interactive element
+        var $el = $(self).find(interactive.join(',')).first();
+        if (!$el[0]) {
+            $el = $(self).children().eq(0);
+            if (!$el[0]) {
+                return $(self);
+            }
+        }
+        return $el;
+    }
+
+    function changeCls ($el) {
+        if ($el.ariaIsDisabled()) {
+            $el.addClass(cls);
+        } else {
+            $el.removeClass(cls);
+        }
+    }
+
+    function disable ($el, bool) {
+        if (!($el instanceof $)) {
+            $el = $($el);
+        }
+        $el.ariaDisabled((bool === undefined) ? true : !!bool);
+        changeCls($el);
+        return $el;
+    }
+
+    // no need for JS API as there us a built-in jQuery extension
+
+    Macro.add('disable', {
+        tags : null,
+        handler : function () {
+            var bool, $wrapper = $(document.createElement('span'))
+                .addClass('macro-' + this.name)
+                .wiki(this.payload[0].contents);
+
+            try {
+                bool = this.args.raw.trim() ? !!Scripting.evalJavaScript(this.args.full) : undefined;
+            } catch (err) {
+                return this.error("bad evaluation: " + err.message);
+            }
+
+            disable(getEl($wrapper), bool);
+
+            // output
+            $(this.output).append($wrapper);
+        }
+    });
+
+}());
+
+// volume slider, by chapel; for sugarcube 2
+// version 1.1.0
+
+/*
+    Changelog:
+    v1.1.1:
+      - Removed compatiblity to make it clear what should be updated
+      - fixed not saving to API
+    v1.1.0:
+      - Fixed compatiblity issues with SugarCube version 2.28 (still compatible with older versions, too).
+      - Added settings API integration for SugarCube 2.26.
+      - Internal improvements and greater style consistency with my other work.
+      - Added a pre-minified version.
+      - By default, the slider is now more granual than before (101 possible positions vs 11).
+        Change the `current` and `rangemax` options to 10 to restore the old feel.
+*/
+
+(function () {
+    Setting.addRange('volume', {
+        label : 'Volume: ',
+        min : 0,
+        max : 100,
+        step : 1,
+        default : 50,
+        onInit : updateVolume,
+        onChange : updateVolume
+    });
+
+	// Function to update the volume level.
+	function setVolume (val) {
+		if (typeof val !== 'number') val = Number(val);
+		if (Number.isNaN(val) || val < 0) val = 0.5;
+		if (val > 1) val = 1;
+		settings.volume = val * 100;
+		Setting.save();
+
+		if ($("input[name='volume']").val() != settings.volume) {
+			$("input[name='volume']").val(settings.volume);
+		}
+		try {
+			if (SimpleAudio) {
+				if (typeof SimpleAudio.volume === 'function') {
+					SimpleAudio.volume(val);
+				} else {
+					SimpleAudio.volume = val;
+				}
+				return val;
+			} else {
+				throw new Error('Cannot access audio API.');
+			}
+		} catch (err) {
+			// Fall back to the wikifier if we have to.
+			console.error(err.message, err);
+			$.wiki('<<masteraudio volume ' + val + '>>');
+			return val;
+		}
+	}
+
+	// Grab volume level changes from the volume slider.
+	$(document).on('input', "input[name='volume']", function() {
+		var change = parseInt($("input[name='volume']").val());
+		setVolume(change / 100);
+	});
+
+	// Create the <<volume>> macro.
+	Macro.add('volume', {
+		handler : function () {
+			var wrapper = $(document.createElement('span'));
+			var slider = $(document.createElement('input'));
+			var className = 'macro-' + this.name;
+			slider.attr({
+				id		: 'volume-control',
+				type	: 'range',
+				name	: 'volume',
+				min		: 0,
+				max		: 100,
+				step	: 1,
+				value	: settings.volume
+			});
+			// Class '.macro-volume' and ID '#volume-control' for styling the slider
+			wrapper.append(slider).addClass(className).appendTo(this.output);
+		}
+	});
+
+	function updateVolume () {
+		setVolume(settings.volume / 100);
+	}
+
+	
+}());
+
 // message macro, by chapel (with help from T.M. Edwards); for sugarcube 2
 // version 1.0.1
 // see the documentation: https://github.com/ChapelR/custom-macros-for-sugarcube-2#message-macro
@@ -406,25 +660,18 @@ UIBar.destroy();
 }
 
 :: PassageHeader
-<<on 'click'>>
-  <<if>>
-    <<on 'click' 'input'>><</on>>
-  <<else>>
-    <<trigger 'click' '.continue button'>>
-  <</if>>
-    
-  <<audio clicking volume 0.2 play>>
-<</on>>
-
+/* Navigation noises */
 <<on 'click' 'button'>>
-  <<audio clicking volume 0.2 play>>
+  <<audio clicking volume 0.1 play>>
 <</on>>
 
+/* Keyboard navigation */
 <<on 'keyup'>><<which 13>><<trigger 'click' '.continue button'>><</on>>
 <<on 'keyup'>><<which 32>><<trigger 'click' '.continue button'>><</on>>
 <<on 'keyup'>><<which 39>><<trigger 'click' '.continue button'>><</on>>
 <<on 'keyup'>><<which 37>><<trigger 'click' '.back button'>><</on>>
 
+/* Forward button navigation */
 <<on 'click' '.continue button'>>
   <<if _ctp.log.index gt 0>>
     <<if $('.back').is(":hidden")>>
@@ -432,7 +679,7 @@ UIBar.destroy();
     <</if>>
   <</if>>
 <</on>>
-
+/* Backwards button navigation */
 <<on 'click' '.back button'>>
   <<if _ctp.log.index is 0>>
     <<if $('.back').is(":visible")>>
@@ -440,7 +687,6 @@ UIBar.destroy();
     <</if>>
   <</if>>
 <</on>>
-
 
 
 :: Start Screen [menu] {"position":"100,0"}
@@ -452,61 +698,93 @@ UIBar.destroy();
   </button>
 </div>
 
+
 :: Confessional {"position":"225,0"}
+/* left image display */ /* <<live '<img @src=$img>'>> */ /* Alternative way of setting images */
+<div class="imgbox"> <<crossfadecontainer "windowbox" $img>> </div>
+<div id="textbox"> /* right textbox display */
+/* Initial variables */
 <<silently>>
-  /* starting audio */
+  /* Starting audio */
   <<audio church fadeoverto 1 0>>
   <<audio rain fadeoverto 1 0>>
   <<audio door play>>
-  /* starting passage */
-  <<set $section to "greeting">>
+  /* Starting variables */
+  <<set $section to "section1">> /* Sets the starting pasage */
   <<set $img to "images/window.png">>
+  <<set $input to false>> /* Allows input in textboxes */
 <</silently>>
 
-/* left image display */
-<div class="imgbox"><<live '<img @src=$img>'>></div>
-/* right image display */
-<div class="textbox">
   /* section 1 */
-  <<ctp "greeting">>
+  <<ctp "section1">>
+    /* Set the ctp to the section to access index attribute */
     <<liveblock>><<set _ctp to CTP.getCTP($section)>><</liveblock>>
-    <<ctpNext t8n>><<set $img to "images/window.png">><<update>>
-      Good afternoon, my child. 
-    <<ctpNext t8n>>What can I do for you?
-    <<ctpNext t8n>>"Bless me, Father, for I have sinned."
-    <<ctpNext t8n>>Oh my... <<ctpNext nobr>>impatient aren't you?
-    <<ctpNext t8n 1s>><div class="shake">At least tell me your name.</div>
-    <<ctpNext t8n>><<textbox "$name" "">> 
+
+    /* Checks if textbox input prompt can be disabled */
+    <<ctpHead>>
+      <<if _ctp.log.index gt 7>>
+          <<set $input to true>><<update>> 
+      <</if>>
+
+    /* Example lines */
+    /* <<set $img to "images/window.png">><<update>> */ /* Alternative way to set images */
     <<ctpNext t8n>>
+      Line with scroll-up transition.
+    <<ctpNext>>
+      Line without scroll-up transition.
+    <<ctpNext t8n>>
+      <<crossfade "windowbox" "images/test.png">>Advancing to this line changes the image.
+    <<ctpNext t8n>>
+      <<crossfade "windowbox" "images/window.png">>Advancing to this line changes the image again. Going back will not revert the image.
+    <<ctpNext t8n clear>>
+      Clear (undoable).
+    <<ctpNext t8n nobr>>
+      Same line if short.
+    <<ctpNext t8n 1s>>
+      Delayed response.
+    <<ctpNext t8n>>
+      <div class="shake">Shaking text.</div>
+    <<ctpNext t8n>>
+      /* Creating and disabling textboxes */
+      <<liveblock>> <<disable $input>><<textbox "$name" "">><</disable>><</liveblock>>
+    <<ctpNext t8n>>
+      /* Handling inputs from textboxes */
       <<if $name.length is 0>>
-        Shy...?
+        Response if no input.
       <<else>>
         <<set $name to $name.toUpperFirst()>>
-        $name, huh?
+        Response if there is an input.
+        Inputted value in correct format: $name
       <</if>>
-    <<ctpNext t8n>> [[Start Screen]]
     <<ctpNext t8n>>
-    <<ctpTail>>
+      /* Manual passage navigation still possible */
+      [[Start Screen]]     
+    <<ctpNext t8n>>
+       /* Required empty ending passage to move to next section */
+
+    /* Checks when to change sections */
+    <<ctpTail>> 
       <<if _ctp.log.index is _ctp.stack.length - 1>>
         <<run _ctp.goTo(0);>>
-        <<set $section to "hello">><<update>>
+        <<set $section to "section2">><<update>>
       <</if>>
   <</ctp>>
 
-  <<ctp "hello">>
+  <<ctp "section2">>
     <<set _ctp to CTP.getCTP($section)>><<update>>
-    <<ctpNext t8n>> hi there 
+    <<ctpNext t8n>>
+      <<script>>
+        var element = document.getElementById("textbox");
+        element.scrollTop = -2000;
+      <</script>>
+      This is a new section. (not undoable)
   <</ctp>>
+
 </div>
 
-
-
-  
-
-<div class="buttons">
-  <div class="continue" ><<button ">>">><<ctpAdvance $section>><</button>></div>
-  <div class="back"><<button "<<">><<ctpBack $section>><</button>></div>
-</div>
+:: PassageFooter 
+<div class="buttons"><div class="continue" ><<button ">>">><<ctpAdvance $section>><</button>></div><div class="back"><<button "<<">><<ctpBack $section>><</button>></div></div>
+/* <<volume>> */
 
 :: Untitled Passage {"position":"400,100"}
 <<message>>Text<</message>>
