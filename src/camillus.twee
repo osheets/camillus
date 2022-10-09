@@ -7,7 +7,7 @@ Camillus
 	"ifid": "74F33364-4C2C-4376-AF7D-AB4A12489121",
 	"format": "SugarCube",
 	"format-version": "2.36.1",
-	"start": "Start Screen",
+	"start": "Main Menu",
 	"zoom": 1
 }
 
@@ -35,6 +35,54 @@ body {
   
 }
 
+h1 {
+  text-align: center;
+  color: gold;
+  font-weight: bold;
+}
+
+#macro-message-9776btn {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#macro-message-9776btn button {
+  width: 2em;
+  background-color: gold;
+  color: black;
+
+}
+
+#ui-dialog-title {
+  background-color: gold;
+  color: black;
+  text-align: left;
+}
+
+#ui-dialog-close {
+  display: none;
+}
+
+#setting-body-volume input {
+  border: none;
+}
+#setting-label-volume {
+  font-size: 15px;
+}
+
+ul.buttons {
+  font-size: 15px;
+  display: block;
+}
+
+.saves ul.buttons {
+  display: none;
+}
+
+
+
 a {
   text-decoration: none;
   color: gold;
@@ -54,10 +102,10 @@ img {
   user-drag: none;
 }
 
-input[type=text] {
-  min-width: 2px;
-  max-width: 80%;
-  margin-top: 5px;
+select, textarea, input[type=text] {
+  min-width: auto;
+  width: 95%;
+  border: 1px solid gold;
 }
 
 input {
@@ -65,14 +113,41 @@ input {
 }
 
 button {
-  background-color: yellow;
+  background-color: gold;
   color: black;
   border: none;
   width: 100%;
+  font-size: 20px;
+}
+
+button:disabled {
+  border: none;
+}
+
+#textbox button {
+  margin: 1px;
+}
+
+.miniUI {
+  background-color: black;
+  font-size: 18px;
+  margin: 0px;
+  padding-right: 20px;
+  position: absolute;
+  top: 20px;
+  right: 0px;
+}
+
+.multichoice {
+  display: flex;
+}
+
+.transparent button {
+  background-color: rgba(0,0,0,0);
 }
 
 #story {
-  border: 1px solid gold;
+  /* border: 1px solid gold; */
   min-height: 100%;
   background-color: black;
 }
@@ -85,13 +160,9 @@ button {
   transition-delay: 0s; 
 }
 
-#passage-confessional {
+#passage-i {
   transition: 0s;
   transition-delay: 1.75s; 
-}
-
-.hide {
-  visibility: hidden;
 }
 
 .imgbox {
@@ -120,13 +191,19 @@ button {
   min-width: 200px;
   background-color: black;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: stretch;
   border: 1px solid gold;
 }
 
+.startbox .menu-items {
+  display: flex;
+  flex-direction: column;
+}
+
 .startbox button {
-  color: yellow;
+  color: gold;
   background-color: black;
   width: 100%;
   length: 100%;
@@ -150,22 +227,19 @@ button {
   background: gold;
 }
 
-.preload {
-  height: 1px;
-  width: 1px;
-  z-index: -1;
-}
-
 .buttons {
   display:flex;
   align-items:flex-start;
   flex-direction: column-reverse;
   margin-right:-20px;
   margin-bottom:50px;
-  gap: 0px;
+  gap: 5px;
   padding: 0px;
-  /* z-index: 1; */
-  /* position: absolute; */
+  font-size:24px;
+}
+
+.macro-ctp-visible {
+  width: 100%;
 }
 
 body[data-tags~=menu] {
@@ -177,16 +251,16 @@ body[data-tags~=menu] {
 }
 
 /* start volume slider */
-input[type=range]#volume-control {
-  width: 100%;
+input[type=range] {
+  /* width: 100%; */
   margin: 6.1px 0;
   background-color: transparent;
   -webkit-appearance: none;
 }
-input[type=range]#volume-control:focus {
+input[type=range]:focus {
   outline: none;
 }
-input[type=range]#volume-control::-webkit-slider-runnable-track {
+input[type=range]::-webkit-slider-runnable-track {
   background: #ffd700;
   border: 0;
   border-radius: 25px;
@@ -194,7 +268,7 @@ input[type=range]#volume-control::-webkit-slider-runnable-track {
   height: 3.8px;
   cursor: pointer;
 }
-input[type=range]#volume-control::-webkit-slider-thumb {
+input[type=range]::-webkit-slider-thumb {
   margin-top: -6.1px;
   width: 16px;
   height: 16px;
@@ -204,10 +278,10 @@ input[type=range]#volume-control::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
 }
-input[type=range]#volume-control:focus::-webkit-slider-runnable-track {
+input[type=range]::-webkit-slider-runnable-track {
   background: #ffe13d;
 }
-input[type=range]#volume-control::-moz-range-track {
+input[type=range]::-moz-range-track {
   background: #ffd700;
   border: 0;
   border-radius: 25px;
@@ -215,7 +289,7 @@ input[type=range]#volume-control::-moz-range-track {
   height: 3.8px;
   cursor: pointer;
 }
-input[type=range]#volume-control::-moz-range-thumb {
+input[type=range]::-moz-range-thumb {
   width: 16px;
   height: 16px;
   background: #ffd700;
@@ -223,7 +297,7 @@ input[type=range]#volume-control::-moz-range-thumb {
   border-radius: 50px;
   cursor: pointer;
 }
-input[type=range]#volume-control::-ms-track {
+input[type=range]::-ms-track {
   background: transparent;
   border-color: transparent;
   border-width: 6.1px 0;
@@ -232,17 +306,17 @@ input[type=range]#volume-control::-ms-track {
   height: 3.8px;
   cursor: pointer;
 }
-input[type=range]#volume-control::-ms-fill-lower {
+input[type=range]::-ms-fill-lower {
   background: #c2a300;
   border: 0;
   border-radius: 50px;
 }
-input[type=range]#volume-control::-ms-fill-upper {
+input[type=range]::-ms-fill-upper {
   background: #ffd700;
   border: 0;
   border-radius: 50px;
 }
-input[type=range]#volume-control::-ms-thumb {
+input[type=range]::-ms-thumb {
   width: 16px;
   height: 16px;
   background: #ffd700;
@@ -252,10 +326,10 @@ input[type=range]#volume-control::-ms-thumb {
   margin-top: 0px;
   /*Needed to keep the Edge thumb centred*/
 }
-input[type=range]#volume-control:focus::-ms-fill-lower {
+input[type=range]:focus::-ms-fill-lower {
   background: #ffd700;
 }
-input[type=range]#volume-control:focus::-ms-fill-upper {
+input[type=range]:focus::-ms-fill-upper {
   background: #ffe13d;
 }
 /*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
@@ -284,31 +358,26 @@ how to remove the virtical space around the range input in IE*/
   .passage {
     height: 100vh;
     width: 100vw;
-    margin: -3vh 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     padding: 0px;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
   }
   .imgbox {
     margin: 0px 20px 0px 20px;
     display: flex;
-    width: 25vh;
-    /* min-height: 20vh; */
+    width: 20vh;
   }
 
   .macro-crossfade {
     flex: 1;
   }
-  /* img {
-    height: inherit;
-    width: inherit;
-  } */
 
   #textbox {
     overflow: auto;
     margin: 0px 0px 0px 0px;
-    min-height: 25vh;
+    max-height: 30vh;
     width: 100px;
     padding: 0px 20px;
     border: 1px solid gold;
@@ -334,6 +403,10 @@ how to remove the virtical space around the range input in IE*/
     max-width: 250px;
   }
 
+  select, textarea, input[type=text] {
+  width: 90%;
+}
+
   .continue {
     flex: 1;
   }
@@ -343,7 +416,7 @@ how to remove the virtical space around the range input in IE*/
   }
 
   *::-webkit-scrollbar-thumb {
-    background: yellow;
+    background: gold;
   }
 
   .startbox{
@@ -356,8 +429,20 @@ how to remove the virtical space around the range input in IE*/
     padding: 0px 20px;
     border: 1px solid gold;
   }
+
+  .startbox .menu-items {
+    flex-direction: row;
+}
+  .startbox button {
+    font-size: 15px;
+  }
+}
+/* Text transitions */
+.macro-append-insert, .macro-linkappend-insert, .macro-linkprepend-insert, .macro-linkreplace-insert, .macro-prepend-insert, .macro-repeat-insert, .macro-replace-insert, .macro-timed-insert {
+
 }
 
+/* Text effects */
 @keyframes shakeit {
   0% { transform: translate(2px, 1px) rotate(0deg); }
 	10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -641,101 +726,131 @@ Macro.add('message', {
 });
 
 UIBar.destroy();
-
-// document.body.classList.add('js-loading');
-// window.addEventListener("load", showPage, false);
-// function showPage() {
-//   document.body.classList.remove('js-loading');
-// }
-
+Config.passages.descriptions = true;
 
 :: StoryInit
-{
+<<silently>>
   <<cacheaudio "bell" "audio/bell.wav">>
   <<cacheaudio "rain" "audio/rain.wav">>
   <<cacheaudio "church" "audio/church-ambience.wav">>
   <<cacheaudio "door" "audio/door.wav">>
   <<cacheaudio "clicking" "audio/click.wav">>
-  <<audio church loop volume 0.25 play>>
-  <<audio rain loop volume 0.10 play>>
-}
-
-:: StoryMenu
-{
-  <div class="preload">
-    <img src="./images/window.png">
-  </div>
-}
+  <<cacheaudio "ambience" "audio/ambience.wav">>
+<</silently>>
 
 :: PassageHeader
-/* Navigation noises */
-<<on 'click' 'button'>>
-  <<audio clicking volume 0.1 play>>
-<</on>>
-
-/* Keyboard navigation */
-<<on 'keyup'>><<which 13>><<trigger 'click' '.continue button'>><</on>>
-<<on 'keyup'>><<which 32>><<trigger 'click' '.continue button'>><</on>>
-<<on 'keyup'>><<which 39>><<trigger 'click' '.continue button'>><</on>>
-<<on 'keyup'>><<which 37>><<trigger 'click' '.back button'>><</on>>
-
-/* Forward button navigation */
-<<on 'click' '.continue button'>>
-  <<if _ctp.log.index gt 0>>
-    <<if $('.back').is(":hidden")>>
-      <<run $(".back").css("display", "block")>>
+<<silently>>
+  /* Navigation noises */
+  <<on 'click' 'button'>>
+    <<audio clicking volume 0.1 play>>
+  <</on>>
+  /* Keyboard navigation */
+  <<on 'keyup'>><<which 81>><<script>>UI.settings();<</script>><</on>>
+  <<on 'keyup'>><<which 13>><<trigger 'click' '.continue button'>><</on>>
+  <<on 'keyup'>><<which 32>><<trigger 'click' '.continue button'>><</on>>
+  <<on 'keyup'>><<which 39>><<trigger 'click' '.continue button'>><</on>>
+  <<on 'keyup'>><<which 37>><<trigger 'click' '.back button'>><</on>>
+  /* Forward button navigation */
+  <<on 'click' '.continue button'>>
+    <<if _ctp.log.index gt 0>>
+      <<if $('.back').is(":hidden")>>
+        <<run $(".back").css("display", "block")>>
+      <</if>>
     <</if>>
-  <</if>>
-<</on>>
-/* Backwards button navigation */
-<<on 'click' '.back button'>>
-  <<if _ctp.log.index is 0>>
-    <<if $('.back').is(":visible")>>
-      <<run $(".back").css("display", "none")>>
+  <</on>>
+  /* Backwards button navigation */
+  <<on 'click' '.back button'>>
+    <<if _ctp.log.index is 0>>
+      <<if $('.back').is(":visible")>>
+        <<run $(".back").css("display", "none")>>
+      <</if>>
     <</if>>
-  <</if>>
-<</on>>
+  <</on>>
+<</silently>>
 
-
-:: Start Screen [menu] {"position":"100,0"}
-<<audio church loop volume 0.25 play>>
-<<audio rain loop volume 0.10 play>>
+:: Main Menu [menu] {"position":"100,0"}
+<<silently>>
+  <<audio church loop volume 0.10 play>>
+  <<audio ambience loop volume 0.25 play>>
+  <<audio rain loop volume 0.10 play>>
+<</silently>>
 <div class="imgbox"><img src="images/window.png"></div>
 <div class="startbox">
-  <button data-passage="Confessional">Start
-  </button>
+  <h1>Camillus</h1>
+  <div class="menu-items">
+    <<button "Start" "I">><</button>>
+    <<button "Warnings" "Warnings">><</button>>
+    <<button "Credits" "Credits">><</button>>
+  </div>
 </div>
 
-
-:: Confessional {"position":"225,0"}
-/* Initial variables */
+:: I {"position":"100,100"}
 <<silently>>
+/* Initial variables */
   /* Starting audio */
   <<audio church fadeoverto 1 0>>
+  <<audio ambience fadeoverto 1 0>>
   <<audio rain fadeoverto 1 0>>
   <<audio door play>>
   /* Starting variables */
   <<set $section to "section1">> /* Sets the starting pasage */
-  <<set $img to "images/window.png">>
+  <<set $img to "images/window.png">> /* Sets the starting image */
   <<set $input to false>> /* Allows input in textboxes */
+  <<set $continue to false>> /* Allows nav forward */
+  <<set $back to false>> /* Allows nav back */
+  <<set _new to [22, 24, 26]>> /* Lines where you cannot go back */
+/* <<live '<img @src=$img>'>> */ /* Alternative way of setting images */
 <</silently>>
-
-/* left image display */ /* <<live '<img @src=$img>'>> */ /* Alternative way of setting images */
 <div class="imgbox"> <<crossfadecontainer "windowbox" $img>> </div>
-<div id="textbox"> /* right textbox display */
-
-
-  /* section 1 */
+<div id="textbox">
   <<ctp "section1">>
     /* Set the ctp to the section to access index attribute */
     <<liveblock>><<set _ctp to CTP.getCTP($section)>><</liveblock>>
 
     /* Checks if textbox input prompt can be disabled */
     <<ctpHead>>
-      <<if _ctp.log.index gt 7>>
-          <<set $input to true>><<update>> 
+      <<if _ctp.log.index gt 9>>
+          <<set $input to true>><<update>>
       <</if>>
+      <<if _new.includes(_ctp.log.index)>>
+          <<set $back to true>><<update>>
+      <</if>>
+    <<ctpNext t8n>>
+      Line with scroll-up transition.
+    <<ctpNext>>
+      Line without scroll-up transition.
+  <</ctp>>
+</div><div class="buttons"><div class="continue"><<liveblock>><<disable $continue>><<button "&#8594;">><<ctpAdvance $section>><</button>><</disable>><</liveblock>></div><div class="back"><<liveblock>><<disable $back>><<button "&#8592;">><<ctpBack $section>><</button>><</disable>><</liveblock>></div></div>
 
+:: Demo {"position":"225,0"}
+<<silently>>
+/* Initial variables */
+  /* Starting audio */
+  <<audio church fadeoverto 1 0>>
+  <<audio ambience fadeoverto 1 0>>
+  <<audio rain fadeoverto 1 0>>
+  <<audio door play>>
+  /* Starting variables */
+  <<set $section to "section1">> /* Sets the starting pasage */
+  <<set $img to "images/window.png">> /* Sets the starting image */
+  <<set $input to false>> /* Allows input in textboxes */
+  <<set $continue to false>> /* Allows nav forward */
+  <<set $back to false>> /* Allows nav back */
+  <<set _new to [22, 24, 26]>> /* Lines where you cannot go back */
+  /* <<live '<img @src=$img>'>> */ /* Alternative way of setting images */
+<</silently>>
+<div class="imgbox"> <<crossfadecontainer "windowbox" $img>></div>
+<div id="textbox">
+  <<ctp "section1">>
+    /* Set the ctp to the section to access index attribute */
+    <<liveblock>><<set _ctp to CTP.getCTP($section)>><</liveblock>>
+    <<ctpHead>><<silently>>
+      <<if _ctp.log.index gt 9>>
+          <<set $input to true>><<update>>
+      <</if>>
+      <<if _new.includes(_ctp.log.index)>>
+          <<set $back to true>><<update>>
+      <</if>><</silently>>
     /* Example lines */
     /* <<set $img to "images/window.png">><<update>> */ /* Alternative way to set images */
     <<ctpNext t8n>>
@@ -749,16 +864,14 @@ UIBar.destroy();
     <<ctpNext t8n clear>>
       Clear (undoable).
     <<ctpNext t8n nobr>>
-      Same line if short.
+      Because max-width: 100%, can no longer do same-line additions using CTP.
     <<ctpNext t8n 1s>>
-      Delayed response.
+      Delayed response. (Not overriden, but clickable).
     <<ctpNext t8n>>
       <div class="shake">Shaking text.</div>
-    <<ctpNext t8n>>
-      /* Creating and disabling textboxes */
+    <<ctpNext t8n>>/* Creating and disabling textboxes */
       <<liveblock>> <<disable $input>><<textbox "$name" "">><</disable>><</liveblock>>
-    <<ctpNext t8n>>
-      /* Handling inputs from textboxes */
+    <<ctpNext t8n>> /* Handling inputs from textboxes */
       <<if $name.length is 0>>
         Response if no input.
       <<else>>
@@ -767,10 +880,101 @@ UIBar.destroy();
         Inputted value in correct format: $name
       <</if>>
     <<ctpNext t8n>>
-      /* Manual passage navigation still possible */
-      [[Start Screen]]     
-    <<ctpNext t8n>>
-       /* Required empty ending passage to move to next section */
+      <<textarea "$pieEssay" "">>
+    <<ctpNext t8n>> /* Dropdowns */
+      <<message 'Create a dropdown link'>>This is text in the dropdown.<</message>><<message 'Create a dropdown button' btn>> This is text in the dropdown button.<</message>><<message 'Same Title' btn 'ID_1'>>This is text in the dropdown of a same-title.<</message>><<message 'Same Title' btn 'ID_2'>>This is text in the dropdown of a same-title.<</message>>
+    <<ctpNext t8n>> /* Typing effect */
+      <<type 40ms keep>> Type characters,  Including [[links]] and ''other markup''<</type>>
+      <<set $continue to true>><<set $back to true>><<update>>
+      <<timed 3s>><<ctpAdvance $section>><</timed>><<ctpNext t8n>>Text after.
+      <<set $continue to false>><<set $back to false>> <<update>>
+    <<ctpNext t8n>> /* Clickable text changes */
+      <<linkreplace "Text to be replaced when clicked." t8n>>Replacement text.<</linkreplace>>
+      
+      The beginning of a sentence, <<linkappend "clickable text to trigger." t8n>> Text added after clickable.<</linkappend>> End of the sentence.
+      
+      The beginning of a sentence, <<linkprepend "clickable text to trigger." t8n>> Text added before clicakble. <</linkprepend>> End of the sentence.
+    <<ctpNext t8n>> /* Self-timed no-click sentence adding */
+      Incoming timed text.
+      <<set $continue to true>><<set $back to true>><<update>>
+      <<timed 2s>><<ctpAdvance $section>><</timed>><<ctpNext t8n>>Text after 2s. Has fade-up.
+      <<timed 2s>> <<ctpAdvance $section>><</timed>><<ctpNext t8n>>Another line after 2s.
+      <<timed 2s>><<ctpAdvance $section>><</timed>><<ctpNext t8n clear>>Cleared screen, then another line after 2s.
+      <<set $continue to false>><<set $back to false>> <<update>>
+    <<ctpNext t8n>> /* Manual passage navigation still possible */
+      [[Main Menu]] [[Jump Test]]
+
+    <<ctpNext t8n>> /* Cycling choices */
+      <<set $continue to true>><<set $back to true>><<update>>
+      The answer to the //Ultimate Question of Life, the Universe, and Everything// is?
+      <<cycle "$answer" autoselect>>
+        <<option "Towel">>
+        <<option "π" 3.14159>>
+        <<option 42>>
+        <<option 69>>
+        <<option "∞" Infinity>>
+      <</cycle>>
+      <<button "Submit">><<ctpAdvance $section>><</button>>
+    <<ctpNext t8n clear>> <<print _ctp.log.index>>
+      <<set $continue to false>><<set $back to false>> <<update>>
+      <<= $answer>>
+
+    <<ctpNext t8 clear>> /* Button choices */
+      <<set $continue to true>><<set $back to true>><<update>>
+      <<set $choice to "default">>
+
+      <<message "Ready to decide. (img load)" btn>>
+      <<button "Choice 1">><<set $choice to "choice 1">><<ctpAdvance $section>><</button>>
+      <div class="multichoice">
+        <<button "Choice 2">><<set $choice to "choice 2">><<ctpAdvance $section>><</button>>
+        <<button "Choice 3">><<set $choice to "choice 3">><<ctpAdvance $section>><</button>>
+        <<button "Choice the Fourth">><<set $choice to "choice 4">><<ctpAdvance $section>><</button>></div><div class="multichoice transparent">
+        <<button [img[images/test.png]]>><<set $choice to "image 1">><<ctpAdvance $section>><</button>>
+        <<button [img[images/test.png]]>><<set $choice to "image 2">><<ctpAdvance $section>><</button>>
+        <<button [img[images/test.png]]>><<set $choice to "image 3">><<ctpAdvance $section>><</button>></div><div class="multichoice">
+        <<button [img[images/test.png]]>><<set $choice to "image 1">><<ctpAdvance $section>><</button>>
+        <<button [img[images/test.png]]>><<set $choice to "image 2">><<ctpAdvance $section>><</button>>
+        <<button [img[images/test.png]]>><<set $choice to "image 3">><<ctpAdvance $section>><</button>></div><</message>>
+    <<ctpNext t8n clear>> <<print _ctp.log.index>>
+      <<set $continue to false>><<set $back to false>> <<update>>
+      <<= $choice>>
+
+    <<ctpNext t8n clear>> /* Checkbox, radiobutton, listbox, numberbox choices */
+      <<set $continue to true>><<set $back to true>><<update>>
+      <<set $pie to "no pie">>
+
+      What pies do you enjoy?
+        <label><<checkbox "$pieBlueberry" false true>> Blueberry?</label>
+        <label><<checkbox "$pieCherry" false true>> Cherry?</label>
+        <label><<checkbox "$pieCoconutCream" false true>> Coconut cream?</label>
+
+      What's your favorite pie?
+        <<radiobutton "$pie" "blueberry" autocheck>> Blueberry?
+        <<radiobutton "$pie" "cherry" autocheck>> Cherry?
+        <<radiobutton "$pie" "coconut cream" autocheck>> Coconut cream?
+
+      <<listbox "$lbanswer" autoselect>>
+	      <<option "Towel">>
+	      <<option "π" 3.14159>>
+	      <<option 42>>
+	      <<option 69>>
+	      <<option "∞" Infinity>>
+      <</listbox>>
+
+      Wager? <<numberbox "$wager" 100>>
+
+      <<button "Submit">><<ctpAdvance $section>><</button>>
+
+    <<ctpNext t8n clear>> <<print _ctp.log.index>>
+      <<set $continue to false>><<set $back to false>> <<update>>
+      <<= $pieBlueberry>>
+      <<= $pie>>
+      <<= $lbanswer>>
+      <<= $wager>>
+    
+    <<ctpNext t8n>> <span style="font-size:20px; color: gold;">&#9884;</span> /* end section marker */
+
+    <<ctpNext t8n clear>> /* Required empty ending passage to move to next section */
 
     /* Checks when to change sections */
     <<ctpTail>> 
@@ -789,33 +993,37 @@ UIBar.destroy();
       <</script>>
       This is a new section. (not undoable)
   <</ctp>>
+</div><div class="buttons"><div class="continue"><<liveblock>><<disable $continue>><<button "&#8594;">><<ctpAdvance $section>><</button>><</disable>><</liveblock>></div><div class="back"><<liveblock>><<disable $back>><<button "&#8592;">><<ctpBack $section>><</button>><</disable>><</liveblock>></div></div>
 
-</div>
+:: Warnings
+<<silently>>
+  <<set $img to "images/window.png">>
+  <<audio bell volume 0.1 play>>
+<</silently>>
+<div class="imgbox"> <<crossfadecontainer "windowbox" $img>></div>
+<div id="textbox" style="flex-direction:column;"> 
+  <h1 style="font-size:16px;">Content Warnings</h1><ul>
+  <li>Death</li><li>Self-harm</li></ul>
+</div><div class="buttons"><<button "Back" "Main Menu">><</button>></div>
+
+:: Credits
+<<silently>>
+  <<set $img to "images/window.png">>
+  <<audio bell volume 0.1 play>>
+<</silently>>
+<div class="imgbox"> <<crossfadecontainer "windowbox" $img>></div>
+<div id="textbox" style="flex-direction:column;"> 
+  <h1 style="font-size:16px;">Credits</h1><ul>
+  <li>Stevie</li><li>Other people</li></ul>
+</div><div class="buttons"><<button "Back" "Main Menu">><</button>></div>
+
+:: Jump Test
+<div class="imgbox"> <<crossfadecontainer "windowbox" $img>></div>
+<div id="textbox">[[Demo]]</div><div class="buttons"><div class="continue"><<liveblock>><<disable $continue>><<button "&#8594;">><<ctpAdvance $section>><</button>><</disable>><</liveblock>></div><div class="back"><<liveblock>><<disable $back>><<button "&#8592;">><<ctpBack $section>><</button>><</disable>><</liveblock>></div></div>
 
 :: PassageFooter 
-<div class="buttons"><div class="continue" ><<button ">>">><<ctpAdvance $section>><</button>></div><div class="back"><<button "<<">><<ctpBack $section>><</button>></div></div>
-/* <<volume>> */
-
-:: Untitled Passage {"position":"400,100"}
-<<message>>Text<</message>>
-// creates a link that reads 'Help' (by default) and can be clicked to display the content between the tags and clicked again to collapse the content.
-
-<<message 'click me' btn>>Text<</message>>
-// creates the message with the link text 'click me' and renders it as a button element
-
-<<message 'Click here!' 'uniqueID'>>...<</message>>
-<<message 'Click here!' 'anotherUniqueID'>>...<</message>>
-// creates two messages with the same link text.  they must be given two different, unique IDs to appear in the same passage
-
-<<linkreplace "You'll //never// take me alive!" t8n>>On second thought, don't hurt me.<</linkreplace>>
-
-I spy with my little <<linkappend "eye" t8n>>, a crab rangoon<</linkappend>>.
-
-I <<linkprepend "like" t8n>>do not <</linkprepend>> lemons.
-
-<<timed 2s>>Hi! Ho!
-<<next>>Hi! Ho!
-<<next>>It's off to work we go!
-<</timed>>
-[[Confessional]]
-
+<div class="miniUI"><<message "&#9776;" btn>>
+    <<link "settings">><<script>>UI.settings();<</script>><</link>>
+    <<link "saves">><<script>>UI.saves();<</script>><</link>>
+    <<link "restart">><<script>>UI.restart();<</script>><</link>>
+  <</message>></div>
