@@ -165,6 +165,10 @@ button:disabled {
   transition-delay: 1.75s; 
 }
 
+.c {
+  color: gold;
+}
+
 .imgbox {
   max-width: 200px;
   display: flex;
@@ -796,6 +800,7 @@ Config.passages.descriptions = true;
   <<set $section to "section1">> /* Sets the starting pasage */
   <<set $img to "images/window.png">> /* Sets the starting image */
   <<set $input to false>> /* Allows input in textboxes */
+  <<set $choice to false>> /* Allows choice selection in textboxes */
   <<set $continue to false>> /* Allows nav forward */
   <<set $back to false>> /* Allows nav back */
   <<set _new to [22, 24, 26]>> /* Lines where you cannot go back */
@@ -806,19 +811,52 @@ Config.passages.descriptions = true;
   <<ctp "section1">>
     /* Set the ctp to the section to access index attribute */
     <<liveblock>><<set _ctp to CTP.getCTP($section)>><</liveblock>>
-
     /* Checks if textbox input prompt can be disabled */
     <<ctpHead>>
-      <<if _ctp.log.index gt 9>>
-          <<set $input to true>><<update>>
+      <<if _ctp.log.index gt 5>>
+          <<set $choice to true>><<update>>
       <</if>>
       <<if _new.includes(_ctp.log.index)>>
           <<set $back to true>><<update>>
       <</if>>
     <<ctpNext t8n>>
-      Line with scroll-up transition.
-    <<ctpNext>>
-      Line without scroll-up transition.
+      <<set $continue to true>><<set $back to true>><<update>>
+      <<timed 0.5s>><<ctpAdvance $section>><</timed>><<ctpNext t8n>>
+        ----
+        <span class="c">//I am in no rush.//</span>
+      <<timed 2s>><<ctpAdvance $section>><</timed>><<ctpNext t8n>>
+        <span class="c">//Neither is the Lord.//</span>
+      <<timed 2s>> <<ctpAdvance $section>><</timed>><<ctpNext t8n>>
+        <span class="c">//Begin when you feel it is right.//</span>
+      <<timed 2s>> <<ctpAdvance $section>><</timed>>
+      <<ctpNext t8n>>
+        ----
+
+      <<liveblock>>
+        <<disable $choice>><<button "Read the confession script">><<set $option to 1>><<ctpAdvance $section>><</button>><</disable>>
+        <<disable $choice>><<button "Ask for clarification">><<set $option to 2>><<ctpAdvance $section>><</button>><</disable>>
+        <<disable $choice>><<button "Be honest">><<set $option to 3>><<ctpAdvance $section>><</button>><</disable>>
+      <</liveblock>>
+
+    <<ctpNext t8n>>
+      <<timed 0s>>
+        <<type 50ms>>I actually haven't confessed in...<</type>>
+        <<next 3s>><<type 50ms>>A while.<</type>><<next 2s>><<ctpAdvance $section>>
+      <</timed>>
+    <<ctpNext t8n>><<timed 0s>><span class="c">//...A while?//</span>
+
+        <<next 3s>><<type 50ms>>....By a while I mean //never//, actually.<</type>><<next 2s>><<type 50ms>>I don't know why I'm here!<</type>><<next 2s>><<type 50ms>>It's a //pain in the ass// even //getting// to this stupid church.<</type>><<next 2s>><<type 20ms>>
+        I just thought, maybe, i don't know, my friends said that new priest seemed kind of hot and he'd be my type, not that I'd know because I //don't go to mass//, and Come on, what kind of priest would be available for a drink anyway. <</type>><<next 3s>><<type 20ms>>So here I am sitting all alone with you trying to see if my friends were right, except I have //no idea// what I'm doing here, or what you're even supposed to //say//.
+        <</type>>
+        <<next 2s>><<type 60ms>>I just wanted and an excuse to meet you, and I can't even -- <</type>>
+        <<next 3s>><<type 60ms>>I --<</type>>
+        <<next 3s>><<type 50ms>><div class="shake"> //''I can't even see your face!''// </div><</type>><<next 8s>><<ctpAdvance $section>>
+      <</timed>>
+    <<ctpNext t8n>>
+      <span class="c">//Dios mio, hijo.//</span>
+
+        
+      
   <</ctp>>
 </div><div class="buttons"><div class="continue"><<liveblock>><<disable $continue>><<button "&#8594;">><<ctpAdvance $section>><</button>><</disable>><</liveblock>></div><div class="back"><<liveblock>><<disable $back>><<button "&#8592;">><<ctpBack $section>><</button>><</disable>><</liveblock>></div></div>
 

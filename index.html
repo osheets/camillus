@@ -251,6 +251,10 @@ button:disabled {
   transition-delay: 1.75s; 
 }
 
+.c {
+  color: gold;
+}
+
 .imgbox {
   max-width: 200px;
   display: flex;
@@ -1468,6 +1472,7 @@ Config.passages.descriptions = true;
   &lt;&lt;set $section to &quot;section1&quot;&gt;&gt; /* Sets the starting pasage */
   &lt;&lt;set $img to &quot;images/window.png&quot;&gt;&gt; /* Sets the starting image */
   &lt;&lt;set $input to false&gt;&gt; /* Allows input in textboxes */
+  &lt;&lt;set $choice to false&gt;&gt; /* Allows choice selection in textboxes */
   &lt;&lt;set $continue to false&gt;&gt; /* Allows nav forward */
   &lt;&lt;set $back to false&gt;&gt; /* Allows nav back */
   &lt;&lt;set _new to [22, 24, 26]&gt;&gt; /* Lines where you cannot go back */
@@ -1478,19 +1483,52 @@ Config.passages.descriptions = true;
   &lt;&lt;ctp &quot;section1&quot;&gt;&gt;
     /* Set the ctp to the section to access index attribute */
     &lt;&lt;liveblock&gt;&gt;&lt;&lt;set _ctp to CTP.getCTP($section)&gt;&gt;&lt;&lt;/liveblock&gt;&gt;
-
     /* Checks if textbox input prompt can be disabled */
     &lt;&lt;ctpHead&gt;&gt;
-      &lt;&lt;if _ctp.log.index gt 9&gt;&gt;
-          &lt;&lt;set $input to true&gt;&gt;&lt;&lt;update&gt;&gt;
+      &lt;&lt;if _ctp.log.index gt 5&gt;&gt;
+          &lt;&lt;set $choice to true&gt;&gt;&lt;&lt;update&gt;&gt;
       &lt;&lt;/if&gt;&gt;
       &lt;&lt;if _new.includes(_ctp.log.index)&gt;&gt;
           &lt;&lt;set $back to true&gt;&gt;&lt;&lt;update&gt;&gt;
       &lt;&lt;/if&gt;&gt;
     &lt;&lt;ctpNext t8n&gt;&gt;
-      Line with scroll-up transition.
-    &lt;&lt;ctpNext&gt;&gt;
-      Line without scroll-up transition.
+      &lt;&lt;set $continue to true&gt;&gt;&lt;&lt;set $back to true&gt;&gt;&lt;&lt;update&gt;&gt;
+      &lt;&lt;timed 0.5s&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/timed&gt;&gt;&lt;&lt;ctpNext t8n&gt;&gt;
+        ----
+        &lt;span class=&quot;c&quot;&gt;//I am in no rush.//&lt;/span&gt;
+      &lt;&lt;timed 2s&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/timed&gt;&gt;&lt;&lt;ctpNext t8n&gt;&gt;
+        &lt;span class=&quot;c&quot;&gt;//Neither is the Lord.//&lt;/span&gt;
+      &lt;&lt;timed 2s&gt;&gt; &lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/timed&gt;&gt;&lt;&lt;ctpNext t8n&gt;&gt;
+        &lt;span class=&quot;c&quot;&gt;//Begin when you feel it is right.//&lt;/span&gt;
+      &lt;&lt;timed 2s&gt;&gt; &lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/timed&gt;&gt;
+      &lt;&lt;ctpNext t8n&gt;&gt;
+        ----
+
+      &lt;&lt;liveblock&gt;&gt;
+        &lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Read the confession script&quot;&gt;&gt;&lt;&lt;set $option to 1&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;
+        &lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Ask for clarification&quot;&gt;&gt;&lt;&lt;set $option to 2&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;
+        &lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Be honest&quot;&gt;&gt;&lt;&lt;set $option to 3&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;
+      &lt;&lt;/liveblock&gt;&gt;
+
+    &lt;&lt;ctpNext t8n&gt;&gt;
+      &lt;&lt;timed 0s&gt;&gt;
+        &lt;&lt;type 50ms&gt;&gt;I actually haven&#39;t confessed in...&lt;&lt;/type&gt;&gt;
+        &lt;&lt;next 3s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;A while.&lt;&lt;/type&gt;&gt;&lt;&lt;next 2s&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;
+      &lt;&lt;/timed&gt;&gt;
+    &lt;&lt;ctpNext t8n&gt;&gt;&lt;&lt;timed 0s&gt;&gt;&lt;span class=&quot;c&quot;&gt;//...A while?//&lt;/span&gt;
+
+        &lt;&lt;next 3s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;....By a while I mean //never//, actually.&lt;&lt;/type&gt;&gt;&lt;&lt;next 2s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;I don&#39;t know why I&#39;m here!&lt;&lt;/type&gt;&gt;&lt;&lt;next 2s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;It&#39;s a //pain in the ass// even //getting// to this stupid church.&lt;&lt;/type&gt;&gt;&lt;&lt;next 2s&gt;&gt;&lt;&lt;type 20ms&gt;&gt;
+        I just thought, maybe, i don&#39;t know, my friends said that new priest seemed kind of hot and he&#39;d be my type, not that I&#39;d know because I //don&#39;t go to mass//, and Come on, what kind of priest would be available for a drink anyway. &lt;&lt;/type&gt;&gt;&lt;&lt;next 3s&gt;&gt;&lt;&lt;type 20ms&gt;&gt;So here I am sitting all alone with you trying to see if my friends were right, except I have //no idea// what I&#39;m doing here, or what you&#39;re even supposed to //say//.
+        &lt;&lt;/type&gt;&gt;
+        &lt;&lt;next 2s&gt;&gt;&lt;&lt;type 60ms&gt;&gt;I just wanted and an excuse to meet you, and I can&#39;t even -- &lt;&lt;/type&gt;&gt;
+        &lt;&lt;next 3s&gt;&gt;&lt;&lt;type 60ms&gt;&gt;I --&lt;&lt;/type&gt;&gt;
+        &lt;&lt;next 3s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;&lt;div class=&quot;shake&quot;&gt; //&#39;&#39;I can&#39;t even see your face!&#39;&#39;// &lt;/div&gt;&lt;&lt;/type&gt;&gt;&lt;&lt;next 8s&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;
+      &lt;&lt;/timed&gt;&gt;
+    &lt;&lt;ctpNext t8n&gt;&gt;
+      &lt;span class=&quot;c&quot;&gt;//Dios mio, hijo.//&lt;/span&gt;
+
+        
+      
   &lt;&lt;/ctp&gt;&gt;
 &lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $continue&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $back&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;ctpBack $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Demo" tags="" position="225,0" size="100,100">&lt;&lt;silently&gt;&gt;
 /* Initial variables */
