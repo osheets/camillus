@@ -35,6 +35,7 @@ body {
   line-height: 1.5;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 }
 
 h1 {
@@ -188,8 +189,13 @@ button:disabled {
   display: flex;
   line-height: 1.5;
   align-items: stretch;
-  transition: 0s;
-  transition-delay: 1s; 
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  transition-delay: 0s; 
+
 }
 
 #passage-i {
@@ -211,7 +217,7 @@ button:disabled {
 #textbox {
   width: 300px;
   height: 465px;
-  overflow: auto;
+  overflow: hidden;
   margin: 20px 0px 20px 50px;
   padding: 0px 2em;
   min-width: 200px;
@@ -247,6 +253,7 @@ button:disabled {
 .startbox button {
   color: gold;
   background-color: black;
+  border: 1px solid gold;
   width: 100%;
   length: 100%;
 }
@@ -428,10 +435,14 @@ how to remove the virtical space around the range input in IE*/
 }
 /* end volume slider */
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 850px) {
   body {
     font-size: 12px;
     flex-direction: column;
+  }
+
+  #textbox button {
+    font-size: 12px;
   }
 
   #passages {
@@ -458,7 +469,7 @@ how to remove the virtical space around the range input in IE*/
   }
 
   #textbox {
-    overflow: auto;
+    overflow: hidden;
     margin: 0px 0px 0px 0px;
     max-height: 30vh;
     width: 100px;
@@ -500,7 +511,7 @@ how to remove the virtical space around the range input in IE*/
     margin: 20px;
     margin: 0px 0px 0px 0px;
     height: 200px;
-    overflow: auto;
+    overflow: hidden;
     width: 100px;
     padding: 0px 20px;
   }
@@ -805,12 +816,12 @@ Macro.add('message', {
 UIBar.destroy();
 Config.passages.descriptions = true;
 $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='windowbox'><img class='macro-crossfade-image' src='images/window.png'><img class='macro-crossfade-image' src='images/window.png'></div></div>").prependTo(document.body);
-$("<div id='particles-js'></div>").appendTo(document.body);
+// $("<div id='particles-js'></div>").appendTo(document.body);
 
 :: StoryInit
 <<silently>>
   <<cacheaudio "bell" "audio/bell.wav">>
-  <<cacheaudio "rain" "audio/rain.wav">>
+  <<cacheaudio "rain" "audio/rain2.wav">>
   <<cacheaudio "church" "audio/church-ambience.wav">>
   <<cacheaudio "door" "audio/door.wav">>
   <<cacheaudio "clicking" "audio/click.wav">>
@@ -850,9 +861,9 @@ $("<div id='particles-js'></div>").appendTo(document.body);
 :: Main Menu [menu yellow] {"position":"100,0"}
 <<silently>>
   <<audio church loop volume 0.10 play>>
-  <<audio ambience loop volume 0.25 play>>
+  /* <<audio ambience loop volume 0.25 play>> */
   <<audio rain loop volume 0.10 play>>
-  <<crossfade "windowbox" "images/window.png" 5s>>
+  <<crossfade "windowbox" "images/window.png" 2s>>
 <</silently>>
 <div class="passage">
 <div class="startbox">
@@ -865,12 +876,12 @@ $("<div id='particles-js'></div>").appendTo(document.body);
 </div><div class="buttons"><div class="continue"><<disable>><<button "&#8594;">><</button>><</disable>></div><div class="back"><<disable>><<button "&#8592;">><</button>><</disable>></div></div></div>
 
 
-:: I [red] {"position":"100,100"}
+:: I [yellow] {"position":"100,100"}
 <<silently>>
 /* Initial variables */
   /* Starting audio */
   <<audio church fadeoverto 1 0>>
-  <<audio ambience fadeoverto 1 0>>
+  /* <<audio ambience fadeoverto 1 0>> */
   <<audio rain fadeoverto 1 0>>
   <<audio door play>>
   /* Starting variables */
@@ -908,7 +919,7 @@ $("<div id='particles-js'></div>").appendTo(document.body);
         ----
 
       <<liveblock>>
-        <div data-tags="red"><<disable $choice>><<button "Read the confession script">><<set $option to 1>><<ctpAdvance $section>><</button>><</disable>>
+        <div data-tags="red"><<disable $choice>><<button "Read the confession script" "Jump Test">><<set $option to 1>><<ctpAdvance $section>><</button>><</disable>>
         <<disable $choice>><<button "Ask for clarification">><<set $option to 2>><<ctpAdvance $section>><</button>><</disable>>
         <<disable $choice>><<button "Be honest">><<set $option to 3>><<ctpAdvance $section>><</button>><</disable>></div>
       <</liveblock>>
@@ -928,7 +939,7 @@ $("<div id='particles-js'></div>").appendTo(document.body);
         <<next 3s>><<type 50ms>><div class="shake"> //''I can't even see your face!''// </div><</type>><<next 8s>><<ctpAdvance $section>>
       <</timed>>
     <<ctpNext t8n>>
-      <span class="c">//Dios mio, hijo.//</span>
+      <span class="c">//Dios mio, hijo.//</span>[[Jump Test]]
 
         
       
@@ -1111,7 +1122,7 @@ $("<div id='particles-js'></div>").appendTo(document.body);
 :: Warnings [menu red]
 <<silently>>
   <<audio bell volume 0.1 play>>
-  <<crossfade "windowbox" "images/windowred.png" 5s>>
+  <<crossfade "windowbox" "images/windowred.png" 2s>>
 <</silently>>
 <div id="textbox" style="flex-direction:column;"> 
   <h1 style="font-size:16px;">Content Warnings</h1><ul>
@@ -1121,15 +1132,15 @@ $("<div id='particles-js'></div>").appendTo(document.body);
 :: Credits [menu pink]
 <<silently>>
   <<audio bell volume 0.1 play>>
-  <<crossfade "windowbox" "images/windowpink.png" 5s>>
+  <<crossfade "windowbox" "images/windowpink.png" 2s>>
 <</silently>>
 <div id="textbox" style="flex-direction:column;"> 
   <h1 style="font-size:16px;">Credits</h1><ul>
   <li>Stevie</li><li>Other people</li></ul>
 </div><div class="buttons"><div class="continue"><<disable>><<button "&#8594;">><</button>><</disable>></div><div class="back"><<button "&#8592;" "Main Menu">><</button>></div></div>
 
-:: Jump Test
-<div id="textbox">[[Demo]]</div><div class="buttons"><div class="continue"><<liveblock>><<disable $continue>><<button "&#8594;">><<ctpAdvance $section>><</button>><</disable>><</liveblock>></div><div class="back"><<liveblock>><<disable $back>><<button "&#8592;">><<ctpBack $section>><</button>><</disable>><</liveblock>></div></div>
+:: Jump Test [yellow]
+<div id="textbox">[[Main Menu]]</div><div class="buttons"><div class="continue"><<liveblock>><<disable $continue>><<button "&#8594;">><<ctpAdvance $section>><</button>><</disable>><</liveblock>></div><div class="back"><<liveblock>><<disable $back>><<button "&#8592;">><<ctpBack $section>><</button>><</disable>><</liveblock>></div></div>
 
 :: PassageFooter 
 <<if not tags().includes("menu")>>

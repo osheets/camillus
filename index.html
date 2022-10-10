@@ -121,6 +121,7 @@ body {
   line-height: 1.5;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
 }
 
 h1 {
@@ -274,8 +275,13 @@ button:disabled {
   display: flex;
   line-height: 1.5;
   align-items: stretch;
-  transition: 0s;
-  transition-delay: 1s; 
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  transition-delay: 0s; 
+
 }
 
 #passage-i {
@@ -297,7 +303,7 @@ button:disabled {
 #textbox {
   width: 300px;
   height: 465px;
-  overflow: auto;
+  overflow: hidden;
   margin: 20px 0px 20px 50px;
   padding: 0px 2em;
   min-width: 200px;
@@ -333,6 +339,7 @@ button:disabled {
 .startbox button {
   color: gold;
   background-color: black;
+  border: 1px solid gold;
   width: 100%;
   length: 100%;
 }
@@ -514,10 +521,14 @@ how to remove the virtical space around the range input in IE*/
 }
 /* end volume slider */
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 850px) {
   body {
     font-size: 12px;
     flex-direction: column;
+  }
+
+  #textbox button {
+    font-size: 12px;
   }
 
   #passages {
@@ -544,7 +555,7 @@ how to remove the virtical space around the range input in IE*/
   }
 
   #textbox {
-    overflow: auto;
+    overflow: hidden;
     margin: 0px 0px 0px 0px;
     max-height: 30vh;
     width: 100px;
@@ -586,7 +597,7 @@ how to remove the virtical space around the range input in IE*/
     margin: 20px;
     margin: 0px 0px 0px 0px;
     height: 200px;
-    overflow: auto;
+    overflow: hidden;
     width: 100px;
     padding: 0px 20px;
   }
@@ -925,7 +936,7 @@ Macro.add('message', {
 UIBar.destroy();
 Config.passages.descriptions = true;
 $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='windowbox'><img class='macro-crossfade-image' src='images/window.png'><img class='macro-crossfade-image' src='images/window.png'></div></div>").prependTo(document.body);
-$("<div id='particles-js'></div>").appendTo(document.body);
+// $("<div id='particles-js'></div>").appendTo(document.body);
 /* twine-user-script #2: "click-to-proceed.js" */
 (function () {
 	"use strict";
@@ -1491,7 +1502,7 @@ $("<div id='particles-js'></div>").appendTo(document.body);
 	});
 })();</script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">&lt;&lt;silently&gt;&gt;
   &lt;&lt;cacheaudio &quot;bell&quot; &quot;audio/bell.wav&quot;&gt;&gt;
-  &lt;&lt;cacheaudio &quot;rain&quot; &quot;audio/rain.wav&quot;&gt;&gt;
+  &lt;&lt;cacheaudio &quot;rain&quot; &quot;audio/rain2.wav&quot;&gt;&gt;
   &lt;&lt;cacheaudio &quot;church&quot; &quot;audio/church-ambience.wav&quot;&gt;&gt;
   &lt;&lt;cacheaudio &quot;door&quot; &quot;audio/door.wav&quot;&gt;&gt;
   &lt;&lt;cacheaudio &quot;clicking&quot; &quot;audio/click.wav&quot;&gt;&gt;
@@ -1525,9 +1536,9 @@ $("<div id='particles-js'></div>").appendTo(document.body);
   &lt;&lt;/on&gt;&gt;
 &lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Main Menu" tags="menu yellow" position="100,0" size="100,100">&lt;&lt;silently&gt;&gt;
   &lt;&lt;audio church loop volume 0.10 play&gt;&gt;
-  &lt;&lt;audio ambience loop volume 0.25 play&gt;&gt;
+  /* &lt;&lt;audio ambience loop volume 0.25 play&gt;&gt; */
   &lt;&lt;audio rain loop volume 0.10 play&gt;&gt;
-  &lt;&lt;crossfade &quot;windowbox&quot; &quot;images/window.png&quot; 5s&gt;&gt;
+  &lt;&lt;crossfade &quot;windowbox&quot; &quot;images/window.png&quot; 2s&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
 &lt;div class=&quot;passage&quot;&gt;
 &lt;div class=&quot;startbox&quot;&gt;
@@ -1537,11 +1548,11 @@ $("<div id='particles-js'></div>").appendTo(document.body);
     &lt;&lt;button &quot;Warnings&quot; &quot;Warnings&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
     &lt;&lt;button &quot;Credits&quot; &quot;Credits&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
   &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;disable&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;disable&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="4" name="I" tags="red" position="100,100" size="100,100">&lt;&lt;silently&gt;&gt;
+&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;disable&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;disable&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="4" name="I" tags="yellow" position="100,100" size="100,100">&lt;&lt;silently&gt;&gt;
 /* Initial variables */
   /* Starting audio */
   &lt;&lt;audio church fadeoverto 1 0&gt;&gt;
-  &lt;&lt;audio ambience fadeoverto 1 0&gt;&gt;
+  /* &lt;&lt;audio ambience fadeoverto 1 0&gt;&gt; */
   &lt;&lt;audio rain fadeoverto 1 0&gt;&gt;
   &lt;&lt;audio door play&gt;&gt;
   /* Starting variables */
@@ -1579,7 +1590,7 @@ $("<div id='particles-js'></div>").appendTo(document.body);
         ----
 
       &lt;&lt;liveblock&gt;&gt;
-        &lt;div data-tags=&quot;red&quot;&gt;&lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Read the confession script&quot;&gt;&gt;&lt;&lt;set $option to 1&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;
+        &lt;div data-tags=&quot;red&quot;&gt;&lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Read the confession script&quot; &quot;Jump Test&quot;&gt;&gt;&lt;&lt;set $option to 1&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;
         &lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Ask for clarification&quot;&gt;&gt;&lt;&lt;set $option to 2&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;
         &lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Be honest&quot;&gt;&gt;&lt;&lt;set $option to 3&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;
       &lt;&lt;/liveblock&gt;&gt;
@@ -1599,7 +1610,7 @@ $("<div id='particles-js'></div>").appendTo(document.body);
         &lt;&lt;next 3s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;&lt;div class=&quot;shake&quot;&gt; //&#39;&#39;I can&#39;t even see your face!&#39;&#39;// &lt;/div&gt;&lt;&lt;/type&gt;&gt;&lt;&lt;next 8s&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;
       &lt;&lt;/timed&gt;&gt;
     &lt;&lt;ctpNext t8n&gt;&gt;
-      &lt;span class=&quot;c&quot;&gt;//Dios mio, hijo.//&lt;/span&gt;
+      &lt;span class=&quot;c&quot;&gt;//Dios mio, hijo.//&lt;/span&gt;[[Jump Test]]
 
         
       
@@ -1776,19 +1787,19 @@ $("<div id='particles-js'></div>").appendTo(document.body);
   &lt;&lt;/ctp&gt;&gt;
 &lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $continue&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $back&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;ctpBack $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="Warnings" tags="menu red" position="725,100" size="100,100">&lt;&lt;silently&gt;&gt;
   &lt;&lt;audio bell volume 0.1 play&gt;&gt;
-  &lt;&lt;crossfade &quot;windowbox&quot; &quot;images/windowred.png&quot; 5s&gt;&gt;
+  &lt;&lt;crossfade &quot;windowbox&quot; &quot;images/windowred.png&quot; 2s&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
 &lt;div id=&quot;textbox&quot; style=&quot;flex-direction:column;&quot;&gt; 
   &lt;h1 style=&quot;font-size:16px;&quot;&gt;Content Warnings&lt;/h1&gt;&lt;ul&gt;
   &lt;li&gt;Death&lt;/li&gt;&lt;li&gt;Self-harm&lt;/li&gt;&lt;/ul&gt;
 &lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;button &quot;&amp;#8592;&quot; &quot;Main Menu&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Credits" tags="menu pink" position="850,100" size="100,100">&lt;&lt;silently&gt;&gt;
   &lt;&lt;audio bell volume 0.1 play&gt;&gt;
-  &lt;&lt;crossfade &quot;windowbox&quot; &quot;images/windowpink.png&quot; 5s&gt;&gt;
+  &lt;&lt;crossfade &quot;windowbox&quot; &quot;images/windowpink.png&quot; 2s&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
 &lt;div id=&quot;textbox&quot; style=&quot;flex-direction:column;&quot;&gt; 
   &lt;h1 style=&quot;font-size:16px;&quot;&gt;Credits&lt;/h1&gt;&lt;ul&gt;
   &lt;li&gt;Stevie&lt;/li&gt;&lt;li&gt;Other people&lt;/li&gt;&lt;/ul&gt;
-&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;disable&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;button &quot;&amp;#8592;&quot; &quot;Main Menu&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="Jump Test" tags="" position="975,100" size="100,100">&lt;div id=&quot;textbox&quot;&gt;[[Demo]]&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $continue&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $back&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;ctpBack $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="PassageFooter" tags="" position="1100,100" size="100,100">&lt;&lt;if not tags().includes(&quot;menu&quot;)&gt;&gt;
+&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;disable&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;button &quot;&amp;#8592;&quot; &quot;Main Menu&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="Jump Test" tags="yellow" position="975,100" size="100,100">&lt;div id=&quot;textbox&quot;&gt;[[Main Menu]]&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $continue&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $back&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;ctpBack $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="PassageFooter" tags="" position="1100,100" size="100,100">&lt;&lt;if not tags().includes(&quot;menu&quot;)&gt;&gt;
 &lt;div class=&quot;miniUI&quot;&gt;&lt;&lt;message &quot;&amp;#9776;&quot; btn&gt;&gt;
     &lt;&lt;link &quot;settings&quot;&gt;&gt;&lt;&lt;script&gt;&gt;UI.settings();&lt;&lt;/script&gt;&gt;&lt;&lt;/link&gt;&gt;
     &lt;&lt;link &quot;saves&quot;&gt;&gt;&lt;&lt;script&gt;&gt;UI.saves();&lt;&lt;/script&gt;&gt;&lt;&lt;/link&gt;&gt;
