@@ -32,13 +32,25 @@ body {
   margin: 0px;
   padding: 0px;
   min-height: 100%;
-  
+  line-height: 1.5;
+  height: 100vh;
+  width: 100vw;
 }
 
 h1 {
   text-align: center;
   color: gold;
   font-weight: bold;
+}
+
+#init-screen {
+  color: gold;
+	background-color: black;
+}
+
+html[data-init="loading"] #init-loading {
+	border-top-color: gold;
+	border-bottom-color: gold;
 }
 
 #macro-message-9776btn {
@@ -50,7 +62,7 @@ h1 {
 
 #macro-message-9776btn button {
   width: 2em;
-  background-color: gold;
+  /* background-color: gold; */
   color: black;
 
 }
@@ -106,10 +118,20 @@ select, textarea, input[type=text] {
   min-width: auto;
   width: 95%;
   border: 1px solid gold;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 input {
   border: 1px solid gold;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 button {
@@ -118,6 +140,11 @@ button {
   border: none;
   width: 100%;
   font-size: 20px;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 button:disabled {
@@ -136,6 +163,11 @@ button:disabled {
   position: absolute;
   top: 20px;
   right: 0px;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .multichoice {
@@ -148,7 +180,7 @@ button:disabled {
 
 #story {
   /* border: 1px solid gold; */
-  min-height: 100%;
+  /* min-height: 100%; */
   background-color: black;
 }
 
@@ -157,7 +189,7 @@ button:disabled {
   line-height: 1.5;
   align-items: stretch;
   transition: 0s;
-  transition-delay: 0s; 
+  transition-delay: 1s; 
 }
 
 #passage-i {
@@ -171,6 +203,7 @@ button:disabled {
 
 .imgbox {
   max-width: 200px;
+  min-width: 200px;
   display: flex;
   margin: 30px 20px 30px 70px;
 }
@@ -182,15 +215,20 @@ button:disabled {
   margin: 20px 0px 20px 50px;
   padding: 0px 2em;
   min-width: 200px;
-  border: 1px solid gold;
   display: flex;
   flex-direction: column-reverse;
   flex: auto;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 }
 
 .startbox {
   width: 300px;
-  margin: 20px 20px 20px 50px;
+  height: 465px;
+  margin: 20px 0px 20px 50px;
   padding: 0px 2em;
   min-width: 200px;
   background-color: black;
@@ -246,17 +284,60 @@ button:disabled {
   width: 100%;
 }
 
-body[data-tags~=menu] {
-	/* background-color: gold; */
-}
-
 .back {
     display: none;
 }
 
+[data-tags~=menu] .back {
+  display: block;
+}
+
+[data-tags~=red] select, [data-tags~=red] textarea, [data-tags~=red] input[type=text], [data-tags~=red] input, [data-tags~=red] #textbox, [data-tags~=red] .startbox {
+  border: 1px solid orangered;
+}
+
+[data-tags~=red] button:not([disabled]), [data-tags~=red] #ui-dialog-title {
+  background-color: orangered;
+}
+
+[data-tags~=red] h1, [data-tags~=red] .c, [data-tags~=red] a {
+  color: orangered;
+}
+
+[data-tags~=yellow] select, [data-tags~=yellow] textarea, [data-tags~=yellow] input[type=text], [data-tags~=yellow] input, [data-tags~=yellow] #textbox, [data-tags~=yellow] .startbox {
+  border: 1px solid gold;
+}
+
+[data-tags~=yellow] button:not([disabled]), [data-tags~=yellow] #ui-dialog-title {
+  background-color: gold;
+}
+
+[data-tags~=yellow] .startbox button {
+  background-color: black;
+}
+
+[data-tags~=yellow] h1, [data-tags~=yellow] .c, [data-tags~=yellow] a {
+  color: gold;
+}
+
+[data-tags~=pink] select, [data-tags~=pink] textarea, [data-tags~=pink] input[type=text], [data-tags~=pink] input, [data-tags~=pink] #textbox, [data-tags~=pink] .startbox {
+  border: 1px solid pink;
+}
+
+[data-tags~=pink] button:not([disabled]), [data-tags~=pink] #ui-dialog-title {
+  background-color: pink;
+}
+
+[data-tags~=pink] h1, [data-tags~=pink] .c, [data-tags~=pink] a {
+  color: pink;
+}
+
+
+
+
+
 /* start volume slider */
 input[type=range] {
-  /* width: 100%; */
   margin: 6.1px 0;
   background-color: transparent;
   -webkit-appearance: none;
@@ -265,7 +346,7 @@ input[type=range]:focus {
   outline: none;
 }
 input[type=range]::-webkit-slider-runnable-track {
-  background: #ffd700;
+  background: #eee;
   border: 0;
   border-radius: 25px;
   width: 100%;
@@ -276,17 +357,17 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -6.1px;
   width: 16px;
   height: 16px;
-  background: #ffd700;
+  background: #eee;
   border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 50px;
   cursor: pointer;
   -webkit-appearance: none;
 }
 input[type=range]::-webkit-slider-runnable-track {
-  background: #ffe13d;
+  background: #eee;
 }
 input[type=range]::-moz-range-track {
-  background: #ffd700;
+  background: #eee;
   border: 0;
   border-radius: 25px;
   width: 100%;
@@ -296,7 +377,7 @@ input[type=range]::-moz-range-track {
 input[type=range]::-moz-range-thumb {
   width: 16px;
   height: 16px;
-  background: #ffd700;
+  background: #eee;
   border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 50px;
   cursor: pointer;
@@ -311,19 +392,19 @@ input[type=range]::-ms-track {
   cursor: pointer;
 }
 input[type=range]::-ms-fill-lower {
-  background: #c2a300;
+  background: #eee;
   border: 0;
   border-radius: 50px;
 }
 input[type=range]::-ms-fill-upper {
-  background: #ffd700;
+  background: #eee;
   border: 0;
   border-radius: 50px;
 }
 input[type=range]::-ms-thumb {
   width: 16px;
   height: 16px;
-  background: #ffd700;
+  background: #eee;
   border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 50px;
   cursor: pointer;
@@ -331,10 +412,10 @@ input[type=range]::-ms-thumb {
   /*Needed to keep the Edge thumb centred*/
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #ffd700;
+  background: #eee;
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: #ffe13d;
+  background: #eee;
 }
 /*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
 how to remove the virtical space around the range input in IE*/
@@ -350,17 +431,18 @@ how to remove the virtical space around the range input in IE*/
 @media screen and (max-width: 700px) {
   body {
     font-size: 12px;
+    flex-direction: column;
   }
 
   #passages {
     max-width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     width: 100vw;
     margin: 0px;
     padding: 0px;
   }
   .passage {
-    height: 100vh;
+    /* height: 100vh; */
     width: 100vw;
     margin: 0px 0px 0px 0px;
     padding: 0px;
@@ -372,10 +454,7 @@ how to remove the virtical space around the range input in IE*/
     margin: 0px 20px 0px 20px;
     display: flex;
     width: 20vh;
-  }
-
-  .macro-crossfade {
-    flex: 1;
+    min-width: auto;
   }
 
   #textbox {
@@ -384,16 +463,13 @@ how to remove the virtical space around the range input in IE*/
     max-height: 30vh;
     width: 100px;
     padding: 0px 20px;
-    border: 1px solid gold;
   }
   #story {
-    width: 100vw;
-    height: 100vh;
+    height: 40vh;
     margin: 0px;
     padding: 0px;
-    border: none;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
   }
 
@@ -419,10 +495,6 @@ how to remove the virtical space around the range input in IE*/
     flex: 1;
   }
 
-  *::-webkit-scrollbar-thumb {
-    background: gold;
-  }
-
   .startbox{
     width: inherit;
     margin: 20px;
@@ -431,7 +503,6 @@ how to remove the virtical space around the range input in IE*/
     overflow: auto;
     width: 100px;
     padding: 0px 20px;
-    border: 1px solid gold;
   }
 
   .startbox .menu-items {
@@ -528,6 +599,9 @@ how to remove the virtical space around the range input in IE*/
 .shake{
 	display:inline-block
 }
+
+/* ---- particles.js container ---- */
+/* #particles-js{ position:absolute; width: 100%; height: 100%; background-color: #0f0f0f; background-image: url(""); background-repeat: no-repeat; background-size: 10%; background-position: 50% 50%; } */
 
 :: Story JavaScript [script]
 (function () {
@@ -728,9 +802,12 @@ Macro.add('message', {
             .appendTo(this.output);
     }
 });
-
 UIBar.destroy();
 Config.passages.descriptions = true;
+$("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='windowbox'><img class='macro-crossfade-image' src='images/window.png'><img class='macro-crossfade-image' src='images/window.png'></div></div>").prependTo(document.body);
+// $("<div id='particles-js'></div>").appendTo(document.body);
+// <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
+// particlesJS("particles-js", {"particles":{"number":{"value":150,"density":{"enable":false,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":1,"random":true,"anim":{"enable":true,"speed":1,"opacity_min":0,"sync":false}},"size":{"value":1,"random":true,"anim":{"enable":false,"speed":0.05,"size_min":0.3,"sync":false}},"line_linked":{"enable":false,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":0.05,"direction":"bottom-left","random":false,"straight":true,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":600}}},"interactivity":{"detect_on":"window","events":{"onhover":{"enable":false,"mode":"bubble"},"onclick":{"enable":false,"mode":"repulse"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":250,"size":0,"duration":2,"opacity":0,"speed":3},"repulse":{"distance":400,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
 
 :: StoryInit
 <<silently>>
@@ -772,23 +849,25 @@ Config.passages.descriptions = true;
   <</on>>
 <</silently>>
 
-:: Main Menu [menu] {"position":"100,0"}
+:: Main Menu [menu yellow] {"position":"100,0"}
 <<silently>>
   <<audio church loop volume 0.10 play>>
   <<audio ambience loop volume 0.25 play>>
   <<audio rain loop volume 0.10 play>>
+  <<crossfade "windowbox" "images/window.png" 5s>>
 <</silently>>
-<div class="imgbox"><img src="images/window.png"></div>
+<div class="passage">
 <div class="startbox">
   <h1>Camillus</h1>
   <div class="menu-items">
-    <<button "Start" "I">><</button>>
+    <<button "Start" "I">><<crossfade "windowbox" "" 0s>><</button>>
     <<button "Warnings" "Warnings">><</button>>
     <<button "Credits" "Credits">><</button>>
   </div>
-</div>
+</div><div class="buttons"><div class="continue"><<disable>><<button "&#8594;">><</button>><</disable>></div><div class="back"><<disable>><<button "&#8592;">><</button>><</disable>></div></div></div>
 
-:: I {"position":"100,100"}
+
+:: I [red] {"position":"100,100"}
 <<silently>>
 /* Initial variables */
   /* Starting audio */
@@ -798,15 +877,13 @@ Config.passages.descriptions = true;
   <<audio door play>>
   /* Starting variables */
   <<set $section to "section1">> /* Sets the starting pasage */
-  <<set $img to "images/window.png">> /* Sets the starting image */
   <<set $input to false>> /* Allows input in textboxes */
   <<set $choice to false>> /* Allows choice selection in textboxes */
   <<set $continue to false>> /* Allows nav forward */
   <<set $back to false>> /* Allows nav back */
   <<set _new to [22, 24, 26]>> /* Lines where you cannot go back */
-/* <<live '<img @src=$img>'>> */ /* Alternative way of setting images */
+  <<crossfade "windowbox" "images/window.png" 1.8s>>
 <</silently>>
-<div class="imgbox"> <<crossfadecontainer "windowbox" $img>> </div>
 <div id="textbox">
   <<ctp "section1">>
     /* Set the ctp to the section to access index attribute */
@@ -833,11 +910,11 @@ Config.passages.descriptions = true;
         ----
 
       <<liveblock>>
-        <<disable $choice>><<button "Read the confession script">><<set $option to 1>><<ctpAdvance $section>><</button>><</disable>>
+        <div data-tags="red"><<disable $choice>><<button "Read the confession script">><<set $option to 1>><<ctpAdvance $section>><</button>><</disable>>
         <<disable $choice>><<button "Ask for clarification">><<set $option to 2>><<ctpAdvance $section>><</button>><</disable>>
-        <<disable $choice>><<button "Be honest">><<set $option to 3>><<ctpAdvance $section>><</button>><</disable>>
+        <<disable $choice>><<button "Be honest">><<set $option to 3>><<ctpAdvance $section>><</button>><</disable>></div>
       <</liveblock>>
-
+      
     <<ctpNext t8n>>
       <<timed 0s>>
         <<type 50ms>>I actually haven't confessed in...<</type>>
@@ -1032,36 +1109,44 @@ Config.passages.descriptions = true;
       This is a new section. (not undoable)
   <</ctp>>
 </div><div class="buttons"><div class="continue"><<liveblock>><<disable $continue>><<button "&#8594;">><<ctpAdvance $section>><</button>><</disable>><</liveblock>></div><div class="back"><<liveblock>><<disable $back>><<button "&#8592;">><<ctpBack $section>><</button>><</disable>><</liveblock>></div></div>
-
-:: Warnings
+ 
+:: Warnings [menu red]
 <<silently>>
-  <<set $img to "images/window.png">>
   <<audio bell volume 0.1 play>>
+  <<crossfade "windowbox" "images/windowred.png" 5s>>
 <</silently>>
-<div class="imgbox"> <<crossfadecontainer "windowbox" $img>></div>
 <div id="textbox" style="flex-direction:column;"> 
   <h1 style="font-size:16px;">Content Warnings</h1><ul>
   <li>Death</li><li>Self-harm</li></ul>
-</div><div class="buttons"><<button "Back" "Main Menu">><</button>></div>
+</div><div class="buttons"><div class="back"><<button "&#8592;" "Main Menu">><</button>></div></div>
 
-:: Credits
+:: Credits [menu pink]
 <<silently>>
-  <<set $img to "images/window.png">>
   <<audio bell volume 0.1 play>>
+  <<crossfade "windowbox" "images/windowpink.png" 5s>>
 <</silently>>
-<div class="imgbox"> <<crossfadecontainer "windowbox" $img>></div>
 <div id="textbox" style="flex-direction:column;"> 
   <h1 style="font-size:16px;">Credits</h1><ul>
   <li>Stevie</li><li>Other people</li></ul>
-</div><div class="buttons"><<button "Back" "Main Menu">><</button>></div>
+</div><div class="buttons"><div class="continue"><<disable>><<button "&#8594;">><</button>><</disable>></div><div class="back"><<button "&#8592;" "Main Menu">><</button>></div></div>
 
 :: Jump Test
-<div class="imgbox"> <<crossfadecontainer "windowbox" $img>></div>
 <div id="textbox">[[Demo]]</div><div class="buttons"><div class="continue"><<liveblock>><<disable $continue>><<button "&#8594;">><<ctpAdvance $section>><</button>><</disable>><</liveblock>></div><div class="back"><<liveblock>><<disable $back>><<button "&#8592;">><<ctpBack $section>><</button>><</disable>><</liveblock>></div></div>
 
 :: PassageFooter 
+<<if not tags().includes("menu")>>
 <div class="miniUI"><<message "&#9776;" btn>>
     <<link "settings">><<script>>UI.settings();<</script>><</link>>
     <<link "saves">><<script>>UI.saves();<</script>><</link>>
     <<link "restart">><<script>>UI.restart();<</script>><</link>>
   <</message>></div>
+<</if>>
+
+/* <<if tags.includes("red")>>
+  <<silently>>
+    <<script>>
+        $("button").css("background-color", "orangered")
+        $("button:disabled").css("background-color", "#444")
+    <</script>>
+  <</silently>>
+<</if>> */
