@@ -171,6 +171,11 @@ button:disabled {
   transition: all 1s ease-in-out;
 }
 
+.miniUI a {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
 .multichoice {
   display: flex;
 }
@@ -876,7 +881,7 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
 </div><div class="buttons"><div class="continue"><<disable>><<button "&#8594;">><</button>><</disable>></div><div class="back"><<disable>><<button "&#8592;">><</button>><</disable>></div></div></div>
 
 
-:: I [yellow] {"position":"100,100"}
+:: I [yellow story_1] {"position":"100,100"}
 <<silently>>
 /* Initial variables */
   /* Starting audio */
@@ -939,14 +944,14 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
         <<next 3s>><<type 50ms>><div class="shake"> //''I can't even see your face!''// </div><</type>><<next 8s>><<ctpAdvance $section>>
       <</timed>>
     <<ctpNext t8n>>
-      <span class="c">//Dios mio, hijo.//</span>[[Jump Test]]
+      <span class="c">//Dios mio, hijo.//</span>
 
         
       
   <</ctp>>
 </div><div class="buttons"><div class="continue"><<liveblock>><<disable $continue>><<button "&#8594;">><<ctpAdvance $section>><</button>><</disable>><</liveblock>></div><div class="back"><<liveblock>><<disable $back>><<button "&#8592;">><<ctpBack $section>><</button>><</disable>><</liveblock>></div></div>
 
-:: Demo {"position":"225,0"}
+:: Demo [appendix] {"position":"225,0"}
 <<silently>>
 /* Initial variables */
   /* Starting audio */
@@ -1139,7 +1144,7 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
   <li>Stevie</li><li>Other people</li></ul>
 </div><div class="buttons"><div class="continue"><<disable>><<button "&#8594;">><</button>><</disable>></div><div class="back"><<button "&#8592;" "Main Menu">><</button>></div></div>
 
-:: Jump Test [yellow]
+:: Jump Test [yellow appendix]
 <div id="textbox">[[Main Menu]]</div><div class="buttons"><div class="continue"><<liveblock>><<disable $continue>><<button "&#8594;">><<ctpAdvance $section>><</button>><</disable>><</liveblock>></div><div class="back"><<liveblock>><<disable $back>><<button "&#8592;">><<ctpBack $section>><</button>><</disable>><</liveblock>></div></div>
 
 :: PassageFooter 
