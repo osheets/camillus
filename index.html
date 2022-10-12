@@ -98,8 +98,12 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://74F33364-4C2C-4376-AF7D-AB4A12489121// --><tw-storydata name="Camillus" startnode="3" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="74F33364-4C2C-4376-AF7D-AB4A12489121" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "Story Stylesheet" */
-@import url(https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css);
+	<!-- UUID://74F33364-4C2C-4376-AF7D-AB4A12489121// --><tw-storydata name="Camillus" startnode="4" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="74F33364-4C2C-4376-AF7D-AB4A12489121" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "Story Stylesheet" */
+/* fonts */
+/* @import url(https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css); */
+/* @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@1,300&display=swap');
 
 html {
   height: 100%;
@@ -108,8 +112,8 @@ html {
 
 body {  
   background-color: black;
-  color: darkgrey;
-  font-family: "Computer Modern Concrete", Helvetica, sans-serif;
+  color: lightgrey;
+  font-family: "Rubik", Helvetica, sans-serif;
   font-size: 16px;
   display: flex;
   justify-content: center;
@@ -125,7 +129,10 @@ body {
 }
 
 h1 {
+  font-family: "Bitter", "Times New Roman", serif;
+  font-style: italic;
   text-align: center;
+  text-transform: uppercase;
   color: gold;
   font-weight: bold;
 }
@@ -149,9 +156,7 @@ html[data-init="loading"] #init-loading {
 
 #macro-message-9776btn button {
   width: 2em;
-  /* background-color: gold; */
   color: black;
-
 }
 
 #ui-dialog-title {
@@ -164,6 +169,15 @@ html[data-init="loading"] #init-loading {
   display: none;
 }
 
+#ui-dialog-body {
+  width: 100%;
+  min-width: auto;
+}
+
+#ui-dialog .popover {
+  background-color: red;
+}
+
 #setting-body-volume input {
   border: none;
 }
@@ -172,15 +186,55 @@ html[data-init="loading"] #init-loading {
 }
 
 ul.buttons {
-  font-size: 15px;
-  display: block;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#ui-dialog-body ul.buttons>li+li>button {
+  margin: 0;
+}
+
+#ui-dialog-body li {
+  flex: 1;
 }
 
 .saves ul.buttons {
   display: none;
 }
 
+.centering {
+  border: 1px solid red;
+}
 
+#ui-dialog-titlebar {
+  min-height: 0;
+  top: 0px;
+}
+
+#ui-dialog.popover {
+  max-width: 66em;
+  width: calc(100% - 32px);
+  height: calc(100% - 32px);
+}
+
+#ui-dialog {
+  max-width: 300px;
+  width: calc(100% - 32px);
+  height: auto;
+}
+
+#ui-dialog-body.popover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.popover button {
+  max-width: 300px;
+}
 
 a {
   text-decoration: none;
@@ -247,6 +301,7 @@ button:disabled {
   font-size: 18px;
   margin: 0px;
   padding-right: 20px;
+  padding-bottom: 20px;
   position: absolute;
   top: 20px;
   right: 0px;
@@ -271,8 +326,6 @@ button:disabled {
 }
 
 #story {
-  /* border: 1px solid gold; */
-  /* min-height: 100%; */
   background-color: black;
 }
 
@@ -286,7 +339,6 @@ button:disabled {
   -ms-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   transition-delay: 0s; 
-
 }
 
 #passage-i {
@@ -296,6 +348,8 @@ button:disabled {
 
 .c {
   color: gold;
+  font-family: "Bitter", "Times New Roman", serif;
+  text-transform: none;
 }
 
 .imgbox {
@@ -303,6 +357,10 @@ button:disabled {
   min-width: 200px;
   display: flex;
   margin: 30px 20px 30px 70px;
+}
+
+.popover .imgbox {
+  margin: 10px;
 }
 
 #textbox {
@@ -344,7 +402,6 @@ button:disabled {
 .startbox button {
   color: gold;
   background-color: black;
-  border: 1px solid gold;
   width: 100%;
   length: 100%;
 }
@@ -378,13 +435,27 @@ button:disabled {
   font-size:24px;
 }
 
+.popover .buttons {
+    position: relative;
+    display:flex;
+    flex-direction: row-reverse;
+    margin:20px 0px 0px 0px;
+    width: 100%;
+    gap: 10px;
+    max-width: 250px;
+}
+
+.popover .continue, .popover .back {
+  flex: 1;
+}
+
 .macro-ctp-visible {
   width: 100%;
 }
 
-.back {
+/* .back {
     display: none;
-}
+} */
 
 [data-tags~=menu] .back {
   display: block;
@@ -430,11 +501,6 @@ button:disabled {
   color: pink;
 }
 
-
-
-
-
-/* start volume slider */
 input[type=range] {
   margin: 6.1px 0;
   background-color: transparent;
@@ -538,13 +604,11 @@ how to remove the virtical space around the range input in IE*/
 
   #passages {
     max-width: 100%;
-    /* height: 100vh; */
     width: 100vw;
     margin: 0px;
     padding: 0px;
   }
   .passage {
-    /* height: 100vh; */
     width: 100vw;
     margin: 0px 0px 0px 0px;
     padding: 0px;
@@ -613,7 +677,12 @@ how to remove the virtical space around the range input in IE*/
   .startbox button {
     font-size: 15px;
   }
+
+  ul.buttons {
+    max-width: 100%;
+  }
 }
+
 /* Text transitions */
 .macro-append-insert, .macro-linkappend-insert, .macro-linkprepend-insert, .macro-linkreplace-insert, .macro-prepend-insert, .macro-repeat-insert, .macro-replace-insert, .macro-timed-insert {
 
@@ -698,11 +767,22 @@ how to remove the virtical space around the range input in IE*/
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 }
-.shake{
+.shake {
 	display:inline-block
 }
 
-/* ---- particles.js container ---- */ #particles-js{ position:absolute; width: 100%; height: 100%; background-color: rgba(0,0,0,0); background-image: url(""); background-repeat: no-repeat; background-size: 10%; background-position: 50% 50%; }
+#particles-js {
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0);
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  z-index: 100;
+  pointer-events: none; 
+}
 /* twine-user-stylesheet #2: "click-to-proceed.css" */
 .macro-ctp-entry {
 	display: inline-block;
@@ -738,210 +818,72 @@ how to remove the virtical space around the range input in IE*/
 .macro-crossfade > .macro-crossfade-image:last-of-type {
 	position: absolute;
 	top: 0; left: 0;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "Story JavaScript" */
-(function () {
-    // disable.js, by chapel, for sugarcube 2
-    // v1.0.0
+}
+/* twine-user-stylesheet #4: "popover.css" */
+/* popover.min.css, by chapel; for use with popover.js; v1.0.0 */
+#ui-dialog-body.popover{
+    background:0 0;
+    border:0;
+    padding:0
+}
 
-    'use strict';
+.popover #ui-dialog-titlebar{
+    background:0 0
+}
 
-    var cls = 'disabled';
-    var interactive = ['button', 'fieldset', 'input', 'menuitem', 'optgroup', 'option', 'select', 'textarea'];
+.popover #ui-dialog-title{
+    display:none
+}
 
-    function getEl (self) {
-        // get the first interactive element
-        var $el = $(self).find(interactive.join(',')).first();
-        if (!$el[0]) {
-            $el = $(self).children().eq(0);
-            if (!$el[0]) {
-                return $(self);
-            }
-        }
-        return $el;
-    }
+.popover #ui-dialog-close{
+    position:fixed;
+    display:none;
+    top:0;
+    right:0;
+    height:3em
+}
 
-    function changeCls ($el) {
-        if ($el.ariaIsDisabled()) {
-            $el.addClass(cls);
-        } else {
-            $el.removeClass(cls);
-        }
-    }
+.popover #ui-dialog-close:hover{
+    background-color:transparent;
+    border-color:transparent;
+    color:#c22
+}
 
-    function disable ($el, bool) {
-        if (!($el instanceof $)) {
-            $el = $($el);
-        }
-        $el.ariaDisabled((bool === undefined) ? true : !!bool);
-        changeCls($el);
-        return $el;
-    }
+#ui-overlay.popover.opaque{
+    opacity:1
+}
 
-    // no need for JS API as there us a built-in jQuery extension
+#ui-overlay.popover.transparent{
+    opacity:0
+}
 
-    Macro.add('disable', {
-        tags : null,
-        handler : function () {
-            var bool, $wrapper = $(document.createElement('span'))
-                .addClass('macro-' + this.name)
-                .wiki(this.payload[0].contents);
+#ui-overlay.popover.invert{
+    background-color:#f8f8f8
+}
 
-            try {
-                bool = this.args.raw.trim() ? !!Scripting.evalJavaScript(this.args.full) : undefined;
-            } catch (err) {
-                return this.error("bad evaluation: " + err.message);
-            }
-
-            disable(getEl($wrapper), bool);
-
-            // output
-            $(this.output).append($wrapper);
-        }
-    });
-
-}());
-
-// volume slider, by chapel; for sugarcube 2
-// version 1.1.0
-
-/*
-    Changelog:
-    v1.1.1:
-      - Removed compatiblity to make it clear what should be updated
-      - fixed not saving to API
-    v1.1.0:
-      - Fixed compatiblity issues with SugarCube version 2.28 (still compatible with older versions, too).
-      - Added settings API integration for SugarCube 2.26.
-      - Internal improvements and greater style consistency with my other work.
-      - Added a pre-minified version.
-      - By default, the slider is now more granual than before (101 possible positions vs 11).
-        Change the `current` and `rangemax` options to 10 to restore the old feel.
-*/
-
-(function () {
-    Setting.addRange('volume', {
-        label : 'Volume: ',
-        min : 0,
-        max : 100,
-        step : 1,
-        default : 50,
-        onInit : updateVolume,
-        onChange : updateVolume
-    });
-
-	// Function to update the volume level.
-	function setVolume (val) {
-		if (typeof val !== 'number') val = Number(val);
-		if (Number.isNaN(val) || val < 0) val = 0.5;
-		if (val > 1) val = 1;
-		settings.volume = val * 100;
-		Setting.save();
-
-		if ($("input[name='volume']").val() != settings.volume) {
-			$("input[name='volume']").val(settings.volume);
-		}
-		try {
-			if (SimpleAudio) {
-				if (typeof SimpleAudio.volume === 'function') {
-					SimpleAudio.volume(val);
-				} else {
-					SimpleAudio.volume = val;
-				}
-				return val;
-			} else {
-				throw new Error('Cannot access audio API.');
-			}
-		} catch (err) {
-			// Fall back to the wikifier if we have to.
-			console.error(err.message, err);
-			$.wiki('<<masteraudio volume ' + val + '>>');
-			return val;
-		}
-	}
-
-	// Grab volume level changes from the volume slider.
-	$(document).on('input', "input[name='volume']", function() {
-		var change = parseInt($("input[name='volume']").val());
-		setVolume(change / 100);
-	});
-
-	// Create the <<volume>> macro.
-	Macro.add('volume', {
-		handler : function () {
-			var wrapper = $(document.createElement('span'));
-			var slider = $(document.createElement('input'));
-			var className = 'macro-' + this.name;
-			slider.attr({
-				id		: 'volume-control',
-				type	: 'range',
-				name	: 'volume',
-				min		: 0,
-				max		: 100,
-				step	: 1,
-				value	: settings.volume
-			});
-			// Class '.macro-volume' and ID '#volume-control' for styling the slider
-			wrapper.append(slider).addClass(className).appendTo(this.output);
-		}
-	});
-
-	function updateVolume () {
-		setVolume(settings.volume / 100);
-	}
-
-	
-}());
-
-// message macro, by chapel (with help from T.M. Edwards); for sugarcube 2
-// version 1.0.1
-// see the documentation: https://github.com/ChapelR/custom-macros-for-sugarcube-2#message-macro
-$(document.head).append('<link rel="icon" href="https://64.media.tumblr.com/3c0c138ba2fbf2345c5178ffd049b79b/97ea9b2179b365ad-c4/s100x200/3448a77b72a70db117a08c4ad6fd133363073cd1.png">');
-
-//intialize namespace
-setup.messageMacro = {};
-
-// default text option:
-setup.messageMacro.default = 'Help';
-
-// <<message>> macro
-Macro.add('message', {
-    tags    : null,
-    handler : function () {
-        var message  = this.payload[0].contents;
-        var $wrapper = $(document.createElement('span'));
-        var $link    = $(document.createElement(this.args.includes('btn') ? 'button' : 'a'));
-        var $content = $(document.createElement('span'));
-
-        $link
-            .wiki(this.args.length > 0 && this.args[0] !== 'btn' ? this.args[0] : setup.messageMacro.default)
-            .ariaClick( this.createShadowWrapper( function () {
-                if ($wrapper.hasClass('open')) {
-                    $content
-                        .css('display', 'none')
-                        .empty();
-                }
-                else {
-                    $content
-                        .css('display', 'block')
-                        .wiki(message);
-                }
-
-                $wrapper.toggleClass('open');
-            }));
-
-        $wrapper
-            .attr('id', 'macro-' + this.name + '-' + this.args.join('').replace(/[^A-Za-z0-9]/g, ''))
-            .addClass('message-text')
-            .append($link)
-            .append($content)
-            .appendTo(this.output);
-    }
-});
-
+#ui-dialog-body.popover.invert{
+    color:#111
+}
+/* end popover.min.css */</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "Story JavaScript" */
+// Remove UI Bar
 UIBar.destroy();
+// Make save titles = passage titles
 Config.passages.descriptions = true;
+// Add image outside of passage
 $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='windowbox'><img class='macro-crossfade-image' src='images/window.png'><img class='macro-crossfade-image' src='images/window.png'></div></div>").prependTo(document.body);
-// $("<div id='particles-js'></div>").appendTo(document.body);
+// Add particle overlay outside of passage
+$("<div id='particles-js'></div>").prependTo(document.body);
+// Import particles.js by VincentGarreau
+importScripts([
+  "http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js",
+  "https://cdn.jsdelivr.net/npm/particles.js@2.0.0/demo/js/app.js"])
+	.then(function () {
+		particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":1,"random":true,"anim":{"enable":true,"speed":1,"opacity_min":0,"sync":false}},"size":{"value":1.5,"random":true,"anim":{"enable":false,"speed":4,"size_min":0.3,"sync":false}},"line_linked":{"enable":false,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":0.1,"direction":"none","random":true,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":600}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"bubble"},"onclick":{"enable":true,"mode":"repulse"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":250,"size":0,"duration":2,"opacity":0,"speed":3},"repulse":{"distance":400,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
+	})
+	.catch(function (err) {
+		// There was an error loading the script, log it to the console.
+		console.log(err);
+	});
 /* twine-user-script #2: "click-to-proceed.js" */
 (function () {
 	"use strict";
@@ -1163,120 +1105,7 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
 		delete variables()["#macro-ctp-dump"];
 	});
 })();
-/* twine-user-script #3: "continue.js" */
-(function () {
-    // v1.0.1
-    'use strict';
-
-    // selectors to ignore
-    var ignored = ['a', ':button', '*[role="button"]', '.continue-macro-ignore', '#ui-bar', '#ui-dialog'];
-
-    var _i = 0;
-
-    prehistory['%%continue-expiration'] = function () {
-        _i = 0;
-    };
-
-    function ns () {
-        // create unique namespace
-        var namespace = '.' + Date.now().toString(36) + '-' + _i;
-        _i++;
-        return namespace;
-    }
-
-    function ignoreMe () {
-        $(document).on('click.continue-macro keyup.continue-macro', ignored.join(', '), function (ev) { 
-            ev.stopPropagation(); 
-        });
-    }
-
-    function addIgnore () {
-        if (State.length > 0) {
-            return false;
-        }
-        var args = [].slice.call(arguments).flatten();
-        ignored = ignored.concat(args);
-        return true;
-    }
-
-    $(document).one(':passagerender', function () {
-        // on first render, set up the ignore list
-        ignoreMe();
-    });
-
-    // continue functions
-    function cont (press, cb) {
-        var namespace = ns();
-        if (!cb || typeof cb !== 'function') {
-            return;
-        }
-        var events = 'click.continue-macro' + namespace;
-        if (press) {
-            events = events + ' keyup.continue-macro' + namespace;
-        }
-        $(document).one(events, function () {
-            cb.call();
-            // expire all namespaced events
-            $(document).off(namespace);
-        });
-    }
-
-    function reset () {
-        var args = [].slice.call(arguments).flatten();
-        ignored = ignored.concat(args);
-        $(document).off('.continue-macro');
-        ignoreMe();
-    }
-
-    // macros
-
-    // <<ignore selectors...>>
-    Macro.add('ignore', {
-        handler : function () {
-            var check = addIgnore(this.args);
-            if (!check) {
-                return this.error('the <<ignore>> macro should only be run from StoryInit or equivalent.');
-            }
-        }
-    });
-
-    // <<cont [append] [press]>>Code<</cont>>
-    Macro.add('cont', {
-        tags : null,
-        handler : function () {
-            var append = this.args.includes('append'), // append keyword
-                press = this.args.includesAny('key', 'keypress', 'press', 'button'), // keypress keyword
-                wiki = this.payload[0].contents, // content to wikify
-                $output; // output element (if needed)
-
-            if (append) {
-                // create output element, but only if needed (e.g. if appending content)
-                $output = $(document.createElement('span'))
-                    .addClass('macro-' + this.name)
-                    .appendTo(this.output);
-            }
-
-            cont(press, this.createShadowWrapper( function () {
-                // wikify 
-                if (append && $output && $output instanceof $) {
-                    $output.wiki(wiki);
-                } else {
-                    $.wiki(wiki);
-                }
-            }));
-        }
-    });
-
-    // APIs
-
-    setup.cont = cont;
-    setup.cont.ignore = addIgnore;
-    setup.cont.reset = reset;
-
-    window.cont = window.cont || setup.cont;
-
-}());
-/* twine-user-script #4: "crossfade.js" */
+/* twine-user-script #3: "crossfade.js" */
 ; (function () {
 	"use-strict";
 	var crossfade = {};
@@ -1349,109 +1178,16 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
 
 	setup.crossfade = crossfade;
 })();
+/* twine-user-script #4: "disable.js" */
+// disable.min.js, for SugarCube 2, by Chapel
+// v1.0.0, 2022-07-21, 3bdbdfbe5ae47a46e4f4e52766d78701939ae9a6
+;!function(){"use strict";var a=["button","fieldset","input","menuitem","optgroup","option","select","textarea"];Macro.add("disable",{tags:null,handler:function(){var t,i,e,s=$(document.createElement("span")).addClass("macro-"+this.name).wiki(this.payload[0].contents);try{t=this.args.raw.trim()?!!Scripting.evalJavaScript(this.args.full):void 0}catch(a){return this.error("bad evaluation: "+a.message)}!function(a,t){a instanceof $||(a=$(a)),a.ariaDisabled(void 0===t||!!t),function(a){a.ariaIsDisabled()?a.addClass("disabled"):a.removeClass("disabled")}(a)}((i=s,e=$(i).find(a.join(",")).first(),e[0]||(e=$(i).children().eq(0))[0]?e:$(i)),t),$(this.output).append(s)}})}();
+// end disable.min.js
 /* twine-user-script #5: "events.js" */
-// event macro set, by chapel; for sugarcube 2
-// version 2.0.0
-
-(function () {
-    setup.eventMacroNamespace = 'macro-event';
-
-    // the <<trigger>> macro
-    Macro.add('trigger', {
-        handler : function () {
-            
-            // declare vars
-            var evt, $el;
-            
-            // check for errors
-            if (this.args.length > 2 || this.args.length === 0) {
-                return this.error('incorrect number of arguments');
-            }
-            if (typeof this.args[0] != 'string') {
-                return this.error('first argument should be a string and a valid event type');
-            }
-            
-            // some setup
-            evt = this.args[0];
-            $el = (this.args.length === 1 ||
-                (this.args[1] && typeof this.args[1] === 'string' &&
-                this.args[1].toLowerCase().trim() === 'document')) ?
-                $(document) : $(this.args[1]);
-            
-            // fire the event
-            $el.trigger(evt);
-            
-        }
-    });
-
-    // the <<event>> macro: <<event type [selector] [once]>>
-    Macro.add(['event', 'on', 'one'], {
-           tags : ['which'],
-        handler : function () {
-            
-            var payload = this.payload;
-            var method = 'on';
-            var evt, sel = '', code = '', i;
-            
-            if (this.args.length > 3 || this.args.length === 0) {
-                return this.error('incorrect number of arguments');
-            }
-            if (typeof this.args[0] != 'string') {
-                return this.error('first argument should be a string and a valid event type');
-            }
-            if (this.args.length === 2 && typeof this.args[1] == 'string' && this.args[1] !== 'once') {
-                sel = this.args[1];
-            }
-            
-            if (this.args.includes('once') || this.name === 'one') {
-                method = 'one';
-            }
-
-            evt = this.args[0];
-            
-            $(document)[method](evt + '.' + setup.eventMacroNamespace, sel, this.createShadowWrapper(function (e) {
-                code = payload[0].contents;
-                if (payload.length > 1) {
-                    for (i = 1; i < payload.length; i++) {
-                        if (payload[i].args.includes(e.which)) {
-                            code = code + payload[i].contents;
-                        }
-                    }
-                }
-                new Wikifier(null, code);
-            }));
-            
-        }
-    });
-
-    Macro.add('off', {
-        handler : function () {
-            
-            // declare vars
-            var evt, $el;
-            
-            // check for errors
-            if (this.args.length > 2 || this.args.length === 0) {
-                return this.error('incorrect number of arguments');
-            }
-            if (typeof this.args[0] != 'string') {
-                return this.error('first argument should be a string and a valid event type or namespace');
-            }
-            
-            // some setup
-            evt = this.args[0];
-            $el = (this.args.length === 1 ||
-                (this.args[1] && typeof this.args[1] === 'string' &&
-                this.args[1].toLowerCase().trim() === 'document')) ?
-                $(document) : $(this.args[1]);
-            
-            // fire the event
-            $el.off(evt);
-            
-        }
-    });
-
-}());
+// events.min.js, for SugarCube 2, by Chapel
+// v2.0.0, 2022-07-21, 3bdbdfbe5ae47a46e4f4e52766d78701939ae9a6
+;setup.eventMacroNamespace="macro-event",Macro.add("trigger",{handler:function(){var t;return this.args.length>2||0===this.args.length?this.error("incorrect number of arguments"):"string"!=typeof this.args[0]?this.error("first argument should be a string and a valid event type"):(t=this.args[0],void(1===this.args.length||this.args[1]&&"string"==typeof this.args[1]&&"document"===this.args[1].toLowerCase().trim()?$(document):$(this.args[1])).trigger(t))}}),Macro.add(["event","on","one"],{tags:["which"],handler:function(){var t,r,e=this.payload,s="on",n="",a="";return this.args.length>3||0===this.args.length?this.error("incorrect number of arguments"):"string"!=typeof this.args[0]?this.error("first argument should be a string and a valid event type"):(2===this.args.length&&"string"==typeof this.args[1]&&"once"!==this.args[1]&&(n=this.args[1]),(this.args.includes("once")||"one"===this.name)&&(s="one"),t=this.args[0],void $(document)[s](t+"."+setup.eventMacroNamespace,n,this.createShadowWrapper((function(t){if(a=e[0].contents,e.length>1)for(r=1;r<e.length;r++)e[r].args.includes(t.which)&&(a+=e[r].contents);new Wikifier(null,a)}))))}}),Macro.add("off",{handler:function(){var t;return this.args.length>2||0===this.args.length?this.error("incorrect number of arguments"):"string"!=typeof this.args[0]?this.error("first argument should be a string and a valid event type or namespace"):(t=this.args[0],void(1===this.args.length||this.args[1]&&"string"==typeof this.args[1]&&"document"===this.args[1].toLowerCase().trim()?$(document):$(this.args[1])).off(t))}});
+// end events.min.js
 /* twine-user-script #6: "live-update.js" */
 (function () {
 	"use strict";
@@ -1505,18 +1241,38 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
 			}
 		}
 	});
-})();</script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">&lt;&lt;silently&gt;&gt;
+})();
+/* twine-user-script #7: "message-macro.js" */
+// message-macro.min.js, for SugarCube 2, by Chapel
+// v1.0.1, 2022-07-21, 3bdbdfbe5ae47a46e4f4e52766d78701939ae9a6
+;setup.messageMacro={},setup.messageMacro.default="Help",Macro.add("message",{tags:null,handler:function(){var e=this.payload[0].contents,a=$(document.createElement("span")),s=$(document.createElement(this.args.includes("btn")?"button":"a")),t=$(document.createElement("span"));s.wiki(this.args.length>0&&"btn"!==this.args[0]?this.args[0]:setup.messageMacro.default).ariaClick(this.createShadowWrapper((function(){a.hasClass("open")?t.css("display","none").empty():t.css("display","block").wiki(e),a.toggleClass("open")}))),a.attr("id","macro-"+this.name+"-"+this.args.join("").replace(/[^A-Za-z0-9]/g,"")).addClass("message-text").append(s).append(t).appendTo(this.output)}});
+// end message-macro.min.js
+/* twine-user-script #8: "popover.js" */
+// popover.min.js, for SugarCube 2, by Chapel
+// v1.0.0, 2022-07-21, 3bdbdfbe5ae47a46e4f4e52766d78701939ae9a6
+;!function(){"use strict";function o(o,i){i=function(){return[].slice.call(arguments).flatten().filter((function(o){return o&&"string"==typeof o&&o.trim()}))||[]}(i),$("#ui-overlay, #ui-dialog").addClass("popover"),$("#ui-overlay, #ui-dialog, #ui-dialog-body").addClass(i),i.includesAny("noclick","no-click")&&$("#ui-overlay").removeClass("ui-close"),Dialog.setup("","popover"),Dialog.wiki(o),Dialog.open(),$(document).one(":dialogclosed",(function(){$("#ui-overlay").addClass("ui-close"),$("#ui-overlay, #ui-dialog").removeClass("popover"),$("#ui-overlay, #ui-dialog, #ui-dialog-body").removeClass(i)}))}Macro.add("popover",{tags:null,handler:function(){o(this.payload[0].contents,this.args)}}),Macro.add("dismisspopover",{skipArgs:!0,handler:function(){$("ui-overlay").hasClass("popover")&&Dialog.close()}}),setup.popover=o}();
+// end popover.min.js
+/* twine-user-script #9: "preload.js" */
+// preload.min.js, for SugarCube 2, by Chapel
+// v1.0.0, 2022-07-21, 3bdbdfbe5ae47a46e4f4e52766d78701939ae9a6
+;!function(){"use strict";function t(t,r){var e=0,o=t.length;if(0===o)throw new Error("No URLs to preload!");t.forEach((function(t){!function(t,r){var e=new Image;e.onload=r,e.onerror=r,e.src=t}(t,(function(){++e===o&&r()}))}))}function r(){return State.length<=0}function e(){var e=[].slice.call(arguments).flatten(),o=!!r()&&LoadScreen.lock();return t(e,(function(){o&&LoadScreen.unlock(o)})),o}setup.preload=e,setup.preload.force=!1,Macro.add("preload",{handler:function(){if(!r()&&!setup.preload.force)return this.error("Attempting to preload images outside of `StoryInit` or similar can cause performance issues. Set `setup.preload.force` to `true` if you want to do it anyway.");e(this.args.flatten().filter((function(t){return"string"==typeof t})))}})}();
+// end preload.min.js
+/* twine-user-script #10: "volume-slider.js" */
+// volume slider, by chapel; for sugarcube 2 (mods by SjoerdHekking)
+!function(){function setVolume(val){"number"!=typeof val&&(val=Number(val)),(Number.isNaN(val)||val<0)&&(val=.5),val>1&&(val=1),settings.volume=100*val,Setting.save(),$("input[name='volume']").val()!=settings.volume&&$("input[name='volume']").val(settings.volume);try{if(SimpleAudio)return"function"==typeof SimpleAudio.volume?SimpleAudio.volume(val):SimpleAudio.volume=val,val;throw new Error("Cannot access audio API.")}catch(err){return console.error(err.message,err),$.wiki("<<masteraudio volume "+val+">>"),val}}function updateVolume(){setVolume(settings.volume/100)}Setting.addRange("volume",{label:"Volume: ",min:0,max:100,step:1,default:50,onInit:updateVolume,onChange:updateVolume}),$(document).on("input","input[name='volume']",(function(){var change;setVolume(parseInt($("input[name='volume']").val())/100)})),Macro.add("volume",{handler:function(){var wrapper=$(document.createElement("span")),slider=$(document.createElement("input")),className="macro-"+this.name;slider.attr({id:"volume-control",type:"range",name:"volume",min:0,max:100,step:1,value:settings.volume}),wrapper.append(slider).addClass(className).appendTo(this.output)}})}();
+// end volume slider</script><tw-passagedata pid="1" name="StoryInterface" tags="" position="100,100" size="100,100">&lt;div id=&quot;story&quot;&gt;
+    &lt;div id=&quot;passages&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="StoryInit" tags="" position="225,100" size="100,100">&lt;&lt;silently&gt;&gt;
   &lt;&lt;cacheaudio &quot;bell&quot; &quot;audio/bell.wav&quot;&gt;&gt;
   &lt;&lt;cacheaudio &quot;rain&quot; &quot;audio/rain2.wav&quot;&gt;&gt;
   &lt;&lt;cacheaudio &quot;church&quot; &quot;audio/church-ambience.wav&quot;&gt;&gt;
   &lt;&lt;cacheaudio &quot;door&quot; &quot;audio/door.wav&quot;&gt;&gt;
   &lt;&lt;cacheaudio &quot;clicking&quot; &quot;audio/click.wav&quot;&gt;&gt;
   &lt;&lt;cacheaudio &quot;ambience&quot; &quot;audio/ambience.wav&quot;&gt;&gt;
-&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="PassageHeader" tags="" position="225,100" size="100,100">&lt;&lt;silently&gt;&gt;
+  &lt;&lt;preload &#39;images/window.png&#39;&gt;&gt;
+&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="PassageHeader" tags="" position="350,100" size="100,100">&lt;&lt;silently&gt;&gt;
   /* Navigation noises */
-  &lt;&lt;on &#39;click&#39; &#39;button&#39;&gt;&gt;
-    &lt;&lt;audio clicking volume 0.1 play&gt;&gt;
-  &lt;&lt;/on&gt;&gt;
+  &lt;&lt;on &#39;click&#39; &#39;button&#39;&gt;&gt;&lt;&lt;audio clicking volume 0.1 play&gt;&gt;&lt;&lt;/on&gt;&gt;
   /* Keyboard navigation */
   &lt;&lt;on &#39;keyup&#39;&gt;&gt;&lt;&lt;which 81&gt;&gt;&lt;&lt;script&gt;&gt;UI.settings();&lt;&lt;/script&gt;&gt;&lt;&lt;/on&gt;&gt;
   &lt;&lt;on &#39;keyup&#39;&gt;&gt;&lt;&lt;which 13&gt;&gt;&lt;&lt;trigger &#39;click&#39; &#39;.continue button&#39;&gt;&gt;&lt;&lt;/on&gt;&gt;
@@ -1524,36 +1280,34 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
   &lt;&lt;on &#39;keyup&#39;&gt;&gt;&lt;&lt;which 39&gt;&gt;&lt;&lt;trigger &#39;click&#39; &#39;.continue button&#39;&gt;&gt;&lt;&lt;/on&gt;&gt;
   &lt;&lt;on &#39;keyup&#39;&gt;&gt;&lt;&lt;which 37&gt;&gt;&lt;&lt;trigger &#39;click&#39; &#39;.back button&#39;&gt;&gt;&lt;&lt;/on&gt;&gt;
   /* Forward button navigation */
-  &lt;&lt;on &#39;click&#39; &#39;.continue button&#39;&gt;&gt;
+  /* &lt;&lt;on &#39;click&#39; &#39;.continue button&#39;&gt;&gt;
     &lt;&lt;if _ctp.log.index gt 0&gt;&gt;
-      &lt;&lt;if $(&#39;.back&#39;).is(&quot;:hidden&quot;)&gt;&gt;
-        &lt;&lt;run $(&quot;.back&quot;).css(&quot;display&quot;, &quot;block&quot;)&gt;&gt;
-      &lt;&lt;/if&gt;&gt;
+      &lt;&lt;if $(&#39;.back&#39;).is(&quot;:hidden&quot;)&gt;&gt;&lt;&lt;run $(&quot;.back&quot;).css(&quot;display&quot;, &quot;block&quot;)&gt;&gt;&lt;&lt;/if&gt;&gt;
     &lt;&lt;/if&gt;&gt;
-  &lt;&lt;/on&gt;&gt;
+  &lt;&lt;/on&gt;&gt; */
   /* Backwards button navigation */
-  &lt;&lt;on &#39;click&#39; &#39;.back button&#39;&gt;&gt;
+  /* &lt;&lt;on &#39;click&#39; &#39;.back button&#39;&gt;&gt;
     &lt;&lt;if _ctp.log.index is 0&gt;&gt;
-      &lt;&lt;if $(&#39;.back&#39;).is(&quot;:visible&quot;)&gt;&gt;
-        &lt;&lt;run $(&quot;.back&quot;).css(&quot;display&quot;, &quot;none&quot;)&gt;&gt;
-      &lt;&lt;/if&gt;&gt;
+      &lt;&lt;if $(&#39;.back&#39;).is(&quot;:visible&quot;)&gt;&gt;&lt;&lt;run $(&quot;.back&quot;).css(&quot;display&quot;, &quot;none&quot;)&gt;&gt;&lt;&lt;/if&gt;&gt;
     &lt;&lt;/if&gt;&gt;
-  &lt;&lt;/on&gt;&gt;
-&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Main Menu" tags="menu yellow" position="100,0" size="100,100">&lt;&lt;silently&gt;&gt;
+  &lt;&lt;/on&gt;&gt; */
+&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Main Menu" tags="menu yellow" position="100,0" size="100,100">&lt;&lt;silently&gt;&gt;
   &lt;&lt;audio church loop volume 0.10 play&gt;&gt;
-  /* &lt;&lt;audio ambience loop volume 0.25 play&gt;&gt; */
+  &lt;&lt;audio ambience loop volume 0.25 play&gt;&gt;
   &lt;&lt;audio rain loop volume 0.10 play&gt;&gt;
   &lt;&lt;crossfade &quot;windowbox&quot; &quot;images/window.png&quot; 2s&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
 &lt;div class=&quot;passage&quot;&gt;
-&lt;div class=&quot;startbox&quot;&gt;
-  &lt;h1&gt;Camillus&lt;/h1&gt;
-  &lt;div class=&quot;menu-items&quot;&gt;
-    &lt;&lt;button &quot;Start&quot; &quot;I&quot;&gt;&gt;&lt;&lt;crossfade &quot;windowbox&quot; &quot;&quot; 0s&gt;&gt;&lt;&lt;/button&gt;&gt;
-    &lt;&lt;button &quot;Warnings&quot; &quot;Warnings&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-    &lt;&lt;button &quot;Credits&quot; &quot;Credits&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-  &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;disable&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;disable&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="4" name="I" tags="yellow story_1" position="100,100" size="100,100">&lt;&lt;silently&gt;&gt;
+  &lt;div class=&quot;startbox&quot;&gt;
+    &lt;h1&gt;Camillus&lt;/h1&gt;
+    &lt;div class=&quot;menu-items&quot;&gt;
+      &lt;&lt;button &quot;Start&quot; &quot;I&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+      &lt;&lt;button &quot;Warnings&quot; &quot;Warnings&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+      &lt;&lt;button &quot;Credits&quot; &quot;Credits&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+      
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;back&quot; style=&quot;visibility:hidden;&quot;&gt;&lt;&lt;button &quot;&amp;#8592;&quot; &quot;Main Menu&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="I" tags="yellow story_1" position="100,100" size="100,100">&lt;&lt;silently&gt;&gt;
 /* Initial variables */
   /* Starting audio */
   &lt;&lt;audio church fadeoverto 1 0&gt;&gt;
@@ -1567,7 +1321,6 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
   &lt;&lt;set $continue to false&gt;&gt; /* Allows nav forward */
   &lt;&lt;set $back to false&gt;&gt; /* Allows nav back */
   &lt;&lt;set _new to [22, 24, 26]&gt;&gt; /* Lines where you cannot go back */
-  &lt;&lt;crossfade &quot;windowbox&quot; &quot;images/window.png&quot; 1.8s&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
 &lt;div id=&quot;textbox&quot;&gt;
   &lt;&lt;ctp &quot;section1&quot;&gt;&gt;
@@ -1575,6 +1328,7 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
     &lt;&lt;liveblock&gt;&gt;&lt;&lt;set _ctp to CTP.getCTP($section)&gt;&gt;&lt;&lt;/liveblock&gt;&gt;
     /* Checks if textbox input prompt can be disabled */
     &lt;&lt;ctpHead&gt;&gt;
+      &lt;&lt;if _ctp.log.index is 0&gt;&gt;&lt;&lt;set $back to true&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $back to false&gt;&gt;&lt;&lt;/if&gt;&gt;
       &lt;&lt;if _ctp.log.index gt 5&gt;&gt;
           &lt;&lt;set $choice to true&gt;&gt;&lt;&lt;update&gt;&gt;
       &lt;&lt;/if&gt;&gt;
@@ -1585,27 +1339,23 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
       &lt;&lt;set $continue to true&gt;&gt;&lt;&lt;set $back to true&gt;&gt;&lt;&lt;update&gt;&gt;
       &lt;&lt;timed 0.5s&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/timed&gt;&gt;&lt;&lt;ctpNext t8n&gt;&gt;
         ----
-        &lt;span class=&quot;c&quot;&gt;//I am in no rush.//&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;I am in no rush.&lt;/span&gt;
       &lt;&lt;timed 2s&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/timed&gt;&gt;&lt;&lt;ctpNext t8n&gt;&gt;
-        &lt;span class=&quot;c&quot;&gt;//Neither is the Lord.//&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;Neither is the Lord.&lt;/span&gt;
       &lt;&lt;timed 2s&gt;&gt; &lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/timed&gt;&gt;&lt;&lt;ctpNext t8n&gt;&gt;
-        &lt;span class=&quot;c&quot;&gt;//Begin when you feel it is right.//&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;Begin when you feel it is right.&lt;/span&gt;
       &lt;&lt;timed 2s&gt;&gt; &lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/timed&gt;&gt;
       &lt;&lt;ctpNext t8n&gt;&gt;
         ----
-
-      &lt;&lt;liveblock&gt;&gt;
-        &lt;div data-tags=&quot;red&quot;&gt;&lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Read the confession script&quot; &quot;Jump Test&quot;&gt;&gt;&lt;&lt;set $option to 1&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;
+        &lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Read the confession script&quot; &quot;Jump Test&quot;&gt;&gt;&lt;&lt;set $option to 1&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;
         &lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Ask for clarification&quot;&gt;&gt;&lt;&lt;set $option to 2&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;
-        &lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Be honest&quot;&gt;&gt;&lt;&lt;set $option to 3&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;
-      &lt;&lt;/liveblock&gt;&gt;
-      
+        &lt;&lt;disable $choice&gt;&gt;&lt;&lt;button &quot;Be honest&quot;&gt;&gt;&lt;&lt;set $option to 3&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;
     &lt;&lt;ctpNext t8n&gt;&gt;
       &lt;&lt;timed 0s&gt;&gt;
         &lt;&lt;type 50ms&gt;&gt;I actually haven&#39;t confessed in...&lt;&lt;/type&gt;&gt;
         &lt;&lt;next 3s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;A while.&lt;&lt;/type&gt;&gt;&lt;&lt;next 2s&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;
       &lt;&lt;/timed&gt;&gt;
-    &lt;&lt;ctpNext t8n&gt;&gt;&lt;&lt;timed 0s&gt;&gt;&lt;span class=&quot;c&quot;&gt;//...A while?//&lt;/span&gt;
+    &lt;&lt;ctpNext t8n&gt;&gt;&lt;&lt;timed 0s&gt;&gt;&lt;span class=&quot;c&quot;&gt;...A while?&lt;/span&gt;
 
         &lt;&lt;next 3s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;....By a while I mean //never//, actually.&lt;&lt;/type&gt;&gt;&lt;&lt;next 2s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;I don&#39;t know why I&#39;m here!&lt;&lt;/type&gt;&gt;&lt;&lt;next 2s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;It&#39;s a //pain in the ass// even //getting// to this stupid church.&lt;&lt;/type&gt;&gt;&lt;&lt;next 2s&gt;&gt;&lt;&lt;type 20ms&gt;&gt;
         I just thought, maybe, i don&#39;t know, my friends said that new priest seemed kind of hot and he&#39;d be my type, not that I&#39;d know because I //don&#39;t go to mass//, and Come on, what kind of priest would be available for a drink anyway. &lt;&lt;/type&gt;&gt;&lt;&lt;next 3s&gt;&gt;&lt;&lt;type 20ms&gt;&gt;So here I am sitting all alone with you trying to see if my friends were right, except I have //no idea// what I&#39;m doing here, or what you&#39;re even supposed to //say//.
@@ -1615,12 +1365,20 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
         &lt;&lt;next 3s&gt;&gt;&lt;&lt;type 50ms&gt;&gt;&lt;div class=&quot;shake&quot;&gt; //&#39;&#39;I can&#39;t even see your face!&#39;&#39;// &lt;/div&gt;&lt;&lt;/type&gt;&gt;&lt;&lt;next 8s&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;
       &lt;&lt;/timed&gt;&gt;
     &lt;&lt;ctpNext t8n&gt;&gt;
-      &lt;span class=&quot;c&quot;&gt;//Dios mio, hijo.//&lt;/span&gt;
+      &lt;span class=&quot;c&quot;&gt;Dios mio, hijo.&lt;/span&gt;
 
         
       
   &lt;&lt;/ctp&gt;&gt;
-&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $continue&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $back&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;ctpBack $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Demo" tags="appendix" position="225,0" size="100,100">&lt;&lt;silently&gt;&gt;
+&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $continue&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $back&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;ctpBack $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div&gt;&lt;&lt;button &#39;pop&#39;&gt;&gt;
+    &lt;&lt;popover &#39;noclick&#39;&gt;&gt;\
+      Hi there! Welcome to my game!
+      &lt;div class=&quot;imgbox&quot;&gt;[img[images/test.png]]&lt;/div&gt;
+      &lt;&lt;button &quot;Continue&quot;&gt;&gt;&lt;&lt;script&gt;&gt;Dialog.close()&lt;&lt;/script&gt;&gt;&lt;&lt;/button&gt;&gt;
+    &lt;&lt;/popover&gt;&gt;
+  &lt;&lt;/button&gt;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="Demo" tags="appendix" position="225,0" size="100,100">&lt;&lt;silently&gt;&gt;
 /* Initial variables */
   /* Starting audio */
   &lt;&lt;audio church fadeoverto 1 0&gt;&gt;
@@ -1790,21 +1548,21 @@ $("<div class='imgbox'><div class='macro-crossfade' data-macro-crossfade-id='win
       &lt;&lt;/script&gt;&gt;
       This is a new section. (not undoable)
   &lt;&lt;/ctp&gt;&gt;
-&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $continue&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $back&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;ctpBack $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="Warnings" tags="menu red" position="725,100" size="100,100">&lt;&lt;silently&gt;&gt;
+&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $continue&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $back&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;ctpBack $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Warnings" tags="menu red" position="850,100" size="100,100">&lt;&lt;silently&gt;&gt;
   &lt;&lt;audio bell volume 0.1 play&gt;&gt;
   &lt;&lt;crossfade &quot;windowbox&quot; &quot;images/windowred.png&quot; 2s&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
 &lt;div id=&quot;textbox&quot; style=&quot;flex-direction:column;&quot;&gt; 
   &lt;h1 style=&quot;font-size:16px;&quot;&gt;Content Warnings&lt;/h1&gt;&lt;ul&gt;
   &lt;li&gt;Death&lt;/li&gt;&lt;li&gt;Self-harm&lt;/li&gt;&lt;/ul&gt;
-&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;button &quot;&amp;#8592;&quot; &quot;Main Menu&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Credits" tags="menu pink" position="850,100" size="100,100">&lt;&lt;silently&gt;&gt;
+&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;button &quot;&amp;#8592;&quot; &quot;Main Menu&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="Credits" tags="menu pink" position="975,100" size="100,100">&lt;&lt;silently&gt;&gt;
   &lt;&lt;audio bell volume 0.1 play&gt;&gt;
   &lt;&lt;crossfade &quot;windowbox&quot; &quot;images/windowpink.png&quot; 2s&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
 &lt;div id=&quot;textbox&quot; style=&quot;flex-direction:column;&quot;&gt; 
   &lt;h1 style=&quot;font-size:16px;&quot;&gt;Credits&lt;/h1&gt;&lt;ul&gt;
   &lt;li&gt;Stevie&lt;/li&gt;&lt;li&gt;Other people&lt;/li&gt;&lt;/ul&gt;
-&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;disable&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;button &quot;&amp;#8592;&quot; &quot;Main Menu&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="Jump Test" tags="yellow appendix" position="975,100" size="100,100">&lt;div id=&quot;textbox&quot;&gt;[[Main Menu]]&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $continue&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $back&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;ctpBack $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="PassageFooter" tags="" position="1100,100" size="100,100">&lt;&lt;if not tags().includes(&quot;menu&quot;)&gt;&gt;
+&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;button &quot;&amp;#8592;&quot; &quot;Main Menu&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="9" name="Jump Test" tags="yellow appendix" position="1100,100" size="100,100">&lt;div id=&quot;textbox&quot;&gt;[[Main Menu]]&lt;/div&gt;&lt;div class=&quot;buttons&quot;&gt;&lt;div class=&quot;continue&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $continue&gt;&gt;&lt;&lt;button &quot;&amp;#8594;&quot;&gt;&gt;&lt;&lt;ctpAdvance $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;div class=&quot;back&quot;&gt;&lt;&lt;liveblock&gt;&gt;&lt;&lt;disable $back&gt;&gt;&lt;&lt;button &quot;&amp;#8592;&quot;&gt;&gt;&lt;&lt;ctpBack $section&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;&lt;/disable&gt;&gt;&lt;&lt;/liveblock&gt;&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="10" name="PassageFooter" tags="" position="1225,100" size="100,100">&lt;&lt;if not tags().includes(&quot;menu&quot;)&gt;&gt;
 &lt;div class=&quot;miniUI&quot;&gt;&lt;&lt;message &quot;&amp;#9776;&quot; btn&gt;&gt;
     &lt;&lt;link &quot;settings&quot;&gt;&gt;&lt;&lt;script&gt;&gt;UI.settings();&lt;&lt;/script&gt;&gt;&lt;&lt;/link&gt;&gt;
     &lt;&lt;link &quot;saves&quot;&gt;&gt;&lt;&lt;script&gt;&gt;UI.saves();&lt;&lt;/script&gt;&gt;&lt;&lt;/link&gt;&gt;

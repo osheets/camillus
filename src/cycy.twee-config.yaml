@@ -1,5 +1,25 @@
 sugarcube-2:
   macros:
+
+    # live-update.js
+    live:
+      name: live
+    l:
+      name: l
+    lh:
+      name: lh
+    liveblock:
+      name: liveblock
+      container: true
+    lb:
+      name: lb
+      container: true
+    update:
+      name: update
+    upd:
+      name: upd
+
+    # click-to-proceed.js
     ctp:
       name: ctp
       container: true
@@ -17,8 +37,6 @@ sugarcube-2:
         <</ctp>>
         ```
         READ: [Documentation](https://github.com/cyrusfirheir/cycy-wrote-custom-macros/tree/master/click-to-proceed#ctp-id-keywords)
-      parameters:
-        - text &+ ...text
     ctpNext:
       name: ctpNext
       parents:
@@ -31,8 +49,6 @@ sugarcube-2:
         <<ctpNext [keywords]>>
         ```
         READ: [Documentation](https://github.com/cyrusfirheir/cycy-wrote-custom-macros/tree/master/click-to-proceed#ctpnext-keywords)
-      parameters:
-        - ...text
     ctpHead:
       name: ctpHead
       parents:
@@ -45,8 +61,6 @@ sugarcube-2:
         <<ctpHead [keywords]>>
         ```
         READ: [Documentation](https://github.com/cyrusfirheir/cycy-wrote-custom-macros/tree/master/click-to-proceed#ctphead-keywords)
-      parameters:
-        - ...text
     ctpTail:
       name: ctpTail
       parents:
@@ -59,8 +73,6 @@ sugarcube-2:
         <<ctpTail [keywords]>>
         ```
         READ: [Documentation](https://github.com/cyrusfirheir/cycy-wrote-custom-macros/tree/master/click-to-proceed#ctptail-keywords)
-      parameters:
-        - ...text
     ctpAdvance:
       name: ctpAdvance
       description: |-
@@ -71,8 +83,6 @@ sugarcube-2:
         <<ctpAdvance id>>
         ```
         READ: [Documentation](https://github.com/cyrusfirheir/cycy-wrote-custom-macros/tree/master/click-to-proceed#ctpadvance-id)
-      parameters:
-        - text
     ctpBack:
       name: ctpBack
       description: |-
@@ -83,5 +93,60 @@ sugarcube-2:
         <<ctpBack id>>
         ```
         READ: [Documentation](https://github.com/cyrusfirheir/cycy-wrote-custom-macros/tree/master/click-to-proceed#ctpback-id)
+    
+    # crossfade.js
+    crossfadecontainer:
+      name: crossfadecontainer
+      description: |-
+        Creates a container to use for crossfading between images.
+
+        Usage:
+        ```
+        <<crossfadecontainer id [initialImagePath]>>
+        ```
       parameters:
-        - text
+        - text |+ text
+    crossfade:
+      name: crossfade
+      description: |-
+        Crossfades between new image and image already in a pre-defined `<<crossfadecontainer>>`.
+        
+        Usage:
+        ```
+        <<crossfade id imagePath [fadeDuration]>>
+        ```
+      parameters:
+        - text &+ text |+ text
+    
+    # narrative-tree.js
+    treebranch:
+      name: treebranch
+      container: true
+      children:
+        - leaf
+      description: |-
+        Defines a branch on a registered NTree.
+
+        Usage:
+        ```
+        <<treebranch NTreeID NTreeBranchID [norepeat|repeatlast|repeat]>>
+          …
+        <</treebranch>>
+        ```
+        READ: [Documentation](https://github.com/cyrusfirheir/cycy-wrote-custom-macros/tree/master/narrative-tree#a-macro-treebranch)
+      parameters:
+        - string &+ string |+ "norepeat"|"repeatlast"|"repeat"
+    leaf:
+      name: leaf
+      parents:
+        - treebranch
+      description: |-
+        Defines a leaf on an NTree branch.
+
+        Usage:
+        ```
+        <<leaf [provider update object]>>
+          …
+        ```
+        READ: [Documentation](https://github.com/cyrusfirheir/cycy-wrote-custom-macros/tree/master/narrative-tree#a-macro-leaf)
+      skipArgs: true
